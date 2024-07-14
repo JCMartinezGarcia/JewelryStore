@@ -1,0 +1,29 @@
+# Archivos generados por el sistema operativo
+.DS_Store
+
+# Carpeta node_modules generada por npm
+node_modules/
+
+# Archivos de registro
+*.log
+
+# Archivos de respaldo
+*.bak
+*.backup
+*~
+
+# Archivos de configuración locales (cambiar según tus necesidades)
+.env
+
+# Archivos generados por IDEs
+.vscode/
+.idea/
+
+# Archivos de caché
+.cache/
+dist/
+
+# Archivos de build
+/build
+
+# Otros archivos y carpetas personalizadas que desees ignorar
