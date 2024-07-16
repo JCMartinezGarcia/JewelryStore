@@ -1,7 +1,13 @@
 /**import controllers */
-const { registerUser } = require('./userController');
+const {
+    listUsers,
+    registerUser,
+    editUser,
+} = require('./userController');
 
 //exports
 module.exports = {
-    registerUser
+    listUsers,
+    registerUser,
+    editUser
 }
