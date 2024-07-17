@@ -8,16 +8,10 @@ const { User, ProfileUser } = require('../models/index');
  * @returns 
  */
 const listUsers = async () => {
-    try {
-        // query users 
-        const usrs = await User.findAll();
-        // return list of users
-        return usrs;
-    } catch (error) {
-        //handle errors
-        console.log('Error reading table users:', error.message);
-        throw error;
-    }
+    // query users 
+    const usrs = await User.findAll();
+    // return list of users
+    return usrs;
 }
 
 /**
@@ -27,16 +21,10 @@ const listUsers = async () => {
  * @returns 
  */
 const registerUser = async (email, password) => {
-    try {
-        // register a new user
-        const usr = await User.create({ email: email, password: password });
-        // return created user
-        return usr;
-    } catch (error) {
-        //handle errors
-        console.log('Error registering user:', error.message);
-        throw error;
-    }
+    // register a new user
+    const usr = await User.create({ email: email, password: password });
+    // return created user
+    return usr;
 }
 
 /**
@@ -47,28 +35,39 @@ const registerUser = async (email, password) => {
  * @returns 
  */
 const editUser = async (email, password, id) => {
-    try {
-        // edits an user
-        const usr = await User.update(
-            { email, password },
-            {
-                where: {
-                    id
-                }
+    // edits an user
+    const usr = await User.update(
+        { email, password },
+        {
+            where: {
+                id
             }
-        );
-        // return updated user
-        return usr;
-    } catch (error) {
-        //handle errors
-        console.log('Error altering table user:', error.message);
-        throw error;
-    }
+        }
+    );
+    // return updated user
+    return usr;
+}
+
+/**
+ * deletes an user
+ * @param {*} id 
+ * @returns 
+ */
+const deleteUser = (id) => {
+    //deletes user 
+    const user = User.destroy({
+        where: {
+            id
+        }
+    });
+    //returns deleted user
+    return user;
 }
 
 //exports
 module.exports = {
     listUsers,
     registerUser,
-    editUser
+    editUser,
+    deleteUser
 }

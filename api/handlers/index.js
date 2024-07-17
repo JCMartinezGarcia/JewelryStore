@@ -2,12 +2,14 @@
 const {
     listUserHandler,
     registerUserHandler,
-    editUserHandler
+    editUserHandler,
+    deleteUserHandler
 } = require('./userHandler');
 //export module 
 module.exports = {
     listUserHandler,
     registerUserHandler,
-    editUserHandler
+    editUserHandler,
+    deleteUserHandler
 }
 
