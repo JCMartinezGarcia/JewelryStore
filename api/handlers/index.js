@@ -1,7 +1,13 @@
 //import handlers
-const { registerUserHandler } = require('./userHandler');
+const {
+    listUserHandler,
+    registerUserHandler,
+    editUserHandler
+} = require('./userHandler');
 //export module 
 module.exports = {
-    registerUserHandler
+    listUserHandler,
+    registerUserHandler,
+    editUserHandler
 }
 
