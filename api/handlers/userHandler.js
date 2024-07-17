@@ -6,6 +6,9 @@ const {
     deleteUser
 } = require('../controllers');
 
+//required modules
+const bcrypt = require('bcrypt');
+
 //handler functions 
 /**
  * handle login to return list of all users
@@ -31,11 +34,14 @@ const listUserHandler = async (req, res) => {
  * @param {*} res 
  */
 const registerUserHandler = async (req, res) => {
+    const saltRounds = 10;
     try {
         //destructure request data
         const { email, password } = req.body;
+        //hash password
+        const hashedPass = await bcrypt.hash(password, saltRounds);
         //call register controller function
-        const user = await registerUser(email, password);
+        const user = await registerUser(email, hashedPass);
         //return response
         res.status(201).json(user);
     } catch (error) {
@@ -53,10 +59,10 @@ const registerUserHandler = async (req, res) => {
 const editUserHandler = async (req, res) => {
     try {
         //destructure request data
-        const { email, password } = req.body;
+        const { email } = req.body;
         const { id } = req.params;
         //call edit user controller function
-        const user = await editUser(email, password, id);
+        const user = await editUser(email, id);
         //return response
         res.status(200).json(user);
     } catch (error) {
