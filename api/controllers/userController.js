@@ -34,10 +34,10 @@ const registerUser = async (email, password) => {
  * @param {*} id 
  * @returns 
  */
-const editUser = async (email, password, id) => {
+const editUser = async (email, id) => {
     // edits an user
     const usr = await User.update(
-        { email, password },
+        { email },
         {
             where: {
                 id
