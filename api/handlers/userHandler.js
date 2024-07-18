@@ -1,9 +1,14 @@
 //import controllers 
-const { listUsers, registerUser, editUser } = require('../controllers');
+const {
+    listUsers,
+    registerUser,
+    editUser,
+    deleteUser
+} = require('../controllers');
 
 //handler functions 
 /**
- * returns list of all users
+ * handle login to return list of all users
  * @param {*} req 
  * @param {*} res 
  */
@@ -21,7 +26,7 @@ const listUserHandler = async (req, res) => {
 }
 
 /**
- * returns all users 
+ * handle logic to register an user
  * @param {*} req 
  * @param {*} res 
  */
@@ -41,7 +46,7 @@ const registerUserHandler = async (req, res) => {
 }
 
 /**
- * edits an user 
+ * handle logic to edit an user 
  * @param {*} req 
  * @param {*} res 
  */
@@ -60,9 +65,31 @@ const editUserHandler = async (req, res) => {
         res.status(500).json({ message: 'Error editing user:', error: error.message });
     }
 }
+
+/**
+ * handle login to delete an user
+ * @param {*} req 
+ * @param {*} res 
+ */
+const deleteUserHandler = async (req, res) => {
+    try {
+        //destructure data
+        const { id } = req.params;
+        //call delete user controller function
+        const user = await deleteUser(id);
+        //return deleted user
+        res.status(200).json(user);
+    } catch (error) {
+        //handle errors
+        console.log('Error deleting user:', error.message);
+        res.status(500).json({ message: 'Error deleting user:', error: error.message });
+    }
+}
+
 //exports
 module.exports = {
     listUserHandler,
     registerUserHandler,
-    editUserHandler
+    editUserHandler,
+    deleteUserHandler
 }
