@@ -44,6 +44,10 @@ const editUser = async (email, id) => {
             }
         }
     );
+    //validate user was found to be edited
+    if (!usr[0]) {
+        throw new Error('User does not exists in database');
+    }
     // return updated user
     return usr;
 }
@@ -60,6 +64,10 @@ const deleteUser = (id) => {
             id
         }
     });
+    //validate user was found to be deleted
+    if (!user[0]) {
+        throw new Error('User does not exists in database');
+    }
     //returns deleted user
     return user;
 }
