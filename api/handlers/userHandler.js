@@ -24,7 +24,7 @@ const listUserHandler = async (req, res) => {
     } catch (error) {
         //handle errors
         console.log('Error listing users:', error.message);
-        res.status(500).json({ message: 'Error listing users:', error: error.message });
+        res.status(500).json({ message: 'Error listing users', error: error.message });
     }
 }
 
@@ -68,7 +68,7 @@ const editUserHandler = async (req, res) => {
     } catch (error) {
         //handle errors
         console.log('Error editing user:', error.message);
-        res.status(500).json({ message: 'Error editing user:', error: error.message });
+        res.status(500).json({ message: 'Error editing user', error: error.message });
     }
 }
 
@@ -88,7 +88,7 @@ const deleteUserHandler = async (req, res) => {
     } catch (error) {
         //handle errors
         console.log('Error deleting user:', error.message);
-        res.status(500).json({ message: 'Error deleting user:', error: error.message });
+        res.status(500).json({ message: 'Error deleting user', error: error.message });
     }
 }
 
