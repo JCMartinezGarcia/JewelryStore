@@ -2,10 +2,30 @@
 const {
     registerUserProfile,
     editUserProfile,
-    deleteUserProfile
+    deleteUserProfile,
+    getUserProfile
 } = require('../controllers');
 
 //handler functions 
+
+/**
+ * handles logic to get an user profile by id
+ * @param {*} req 
+ * @param {*} res 
+ */
+const getUserProfileHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        //call register profile function 
+        const profile = await getUserProfile(id);
+        //return response status and profile
+        res.status(201).json(profile);
+    } catch (error) {
+        //handle errors
+        console.log('Error getting user profile', error.message);
+        res.status(500).json({ message: 'Error getting user profile', error: error.message });
+    }
+}
 
 /**
  * handle logic to register an user profile
@@ -68,6 +88,7 @@ const deleteUserProfileHandler = async (req, res) => {
 
 //exports
 module.exports = {
+    getUserProfileHandler,
     registerUserProfileHandler,
     editUserProfileHandler,
     deleteUserProfileHandler

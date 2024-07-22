@@ -7,6 +7,7 @@ const {
 } = require('./userController');
 
 const {
+    getUserProfile,
     registerUserProfile,
     editUserProfile,
     deleteUserProfile
@@ -18,7 +19,8 @@ module.exports = {
     registerUser,
     editUser,
     deleteUser,
+    getUserProfile,
     registerUserProfile,
     editUserProfile,
-    deleteUserProfile
+    deleteUserProfile,
 }

@@ -7,6 +7,7 @@ const {
 } = require('./userHandler');
 
 const {
+    getUserProfileHandler,
     registerUserProfileHandler,
     editUserProfileHandler,
     deleteUserProfileHandler
@@ -18,6 +19,7 @@ module.exports = {
     registerUserHandler,
     editUserHandler,
     deleteUserHandler,
+    getUserProfileHandler,
     registerUserProfileHandler,
     editUserProfileHandler,
     deleteUserProfileHandler

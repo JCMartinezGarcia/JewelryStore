@@ -1,7 +1,23 @@
 //required modules
-const { User, UserProfile } = require('../models/index');
+const { UserProfile } = require('../models/index');
 
 //functions
+
+/**
+ * gets an user profile by id
+ * @param {*} id 
+ * @returns 
+ */
+const getUserProfile = async (id) => {
+    //gets user profile by id 
+    const profile = UserProfile.findAll({
+        where: {
+            id,
+        },
+    });
+    //returns user profile 
+    return profile;
+}
 
 /**
  * registers a new user profile
@@ -53,6 +69,7 @@ const deleteUserProfile = async (id) => {
 
 //exports
 module.exports = {
+    getUserProfile,
     registerUserProfile,
     editUserProfile,
     deleteUserProfile
