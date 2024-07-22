@@ -1,6 +1,6 @@
 //import models
 const { where } = require('sequelize');
-const { User, ProfileUser } = require('../models/index');
+const { User, UserProfile } = require('../models/index');
 //controller Function
 
 /**
