@@ -35,7 +35,17 @@ const getUserProfileHandler = async (req, res) => {
 const registerUserProfileHandler = async (req, res) => {
 
     try {
+        //check if file exist in request file object
+        const fileExist = req.hasOwnProperty('file');
+        //text form fields
         const profileData = req.body;
+        //validate file exist
+        if (fileExist) {
+            //destructure storage profile image path
+            const { path } = req.file;
+            //add image storage path to profile data object
+            profileData.image = path;
+        }
         //call register profile function 
         const profile = await registerUserProfile(profileData);
         //return response status and profile
@@ -54,8 +64,18 @@ const registerUserProfileHandler = async (req, res) => {
  */
 const editUserProfileHandler = async (req, res) => {
     try {
-        const profileData = req.body;
         const { id } = req.params;
+        //check if file exist in request file object
+        const fileExist = req.hasOwnProperty('file');
+        //text form fields
+        const profileData = req.body;
+        //validate file exist
+        if (fileExist) {
+            //destructure storage profile image path
+            const { path } = req.file;
+            //add image storage path to profile data object
+            profileData.image = path;
+        }
         //call edit profile function 
         const profile = await editUserProfile(profileData, id);
         //return response status and edited profile
