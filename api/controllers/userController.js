@@ -23,6 +23,8 @@ const listUsers = async () => {
 const registerUser = async (email, password) => {
     // register a new user
     const usr = await User.create({ email: email, password: password });
+    //create user profile
+    usr.createUserProfile({ idUser: usr.id });
     // return created user
     return usr;
 }
