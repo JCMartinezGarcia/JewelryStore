@@ -1,6 +1,8 @@
 //required modules
 var express = require('express');
 var router = express.Router();
+const multer = require('multer');
+const upload = multer({ dest: './public/images/' });
 
 const {
     registerUserProfileHandler,
@@ -11,9 +13,9 @@ const {
 
 //user Routes
 
-router.post('/register', registerUserProfileHandler);
+router.post('/register', upload.single('profile_image'), registerUserProfileHandler);
 router.get('/get/:id', getUserProfileHandler);
-router.put('/edit/:id', editUserProfileHandler);
+router.put('/edit/:id', upload.single('profile_image'), editUserProfileHandler);
 router.delete('/delete/:id', deleteUserProfileHandler);
 
 //export handlers
