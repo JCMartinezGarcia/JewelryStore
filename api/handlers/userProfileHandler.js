@@ -19,7 +19,7 @@ const getUserProfileHandler = async (req, res) => {
         //call register profile function 
         const profile = await getUserProfile(id);
         //return response status and profile
-        res.status(201).json(profile);
+        res.status(200).json(profile);
     } catch (error) {
         //handle errors
         console.log('Error getting user profile', error.message);
@@ -79,7 +79,7 @@ const editUserProfileHandler = async (req, res) => {
         //call edit profile function 
         const profile = await editUserProfile(profileData, id);
         //return response status and edited profile
-        res.status(201).json(profile);
+        res.status(202).json(profile);
     } catch (error) {
         //handle errors
         console.log('Error editing user profile', error.message);
@@ -98,7 +98,7 @@ const deleteUserProfileHandler = async (req, res) => {
         //call delete profile function 
         const profile = await deleteUserProfile(id);
         //return response
-        res.status(201).json(profile);
+        res.status(200).json(profile);
     } catch (error) {
         //handle errors
         console.log('Error deleting user profile', error.message);

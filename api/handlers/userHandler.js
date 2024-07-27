@@ -64,7 +64,7 @@ const editUserHandler = async (req, res) => {
         //call edit user controller function
         const user = await editUser(email, id);
         //return response
-        res.status(200).json(user);
+        res.status(202).json(user);
     } catch (error) {
         //handle errors
         console.log('Error editing user:', error.message);
