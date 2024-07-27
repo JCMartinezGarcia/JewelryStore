@@ -13,6 +13,10 @@ const {
     deleteUserProfileHandler
 } = require('./userProfileHandler');
 
+const {
+    registerClientHandler
+} = require('./clientsHandler');
+
 //exports
 module.exports = {
     listUserHandler,
@@ -22,6 +26,7 @@ module.exports = {
     getUserProfileHandler,
     registerUserProfileHandler,
     editUserProfileHandler,
-    deleteUserProfileHandler
+    deleteUserProfileHandler,
+    registerClientHandler
 }
 
