@@ -14,7 +14,12 @@ const {
 } = require('./userProfileHandler');
 
 const {
-    registerClientHandler
+    listClientsHandler,
+    getClientHandler,
+    registerClientHandler,
+    editClientHandler,
+    deleteClientHandler,
+    searchClientsHandler
 } = require('./clientsHandler');
 
 //exports
@@ -27,6 +32,11 @@ module.exports = {
     registerUserProfileHandler,
     editUserProfileHandler,
     deleteUserProfileHandler,
-    registerClientHandler
+    listClientsHandler,
+    getClientHandler,
+    registerClientHandler,
+    editClientHandler,
+    deleteClientHandler,
+    searchClientsHandler
 }
 

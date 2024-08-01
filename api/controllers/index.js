@@ -14,7 +14,12 @@ const {
 } = require('./userProfileController');
 
 const {
-    registerClient
+    listClients,
+    getClientById,
+    registerClient,
+    editClient,
+    deleteClient,
+    searchClients
 } = require('./clientsController');
 
 //exports
@@ -27,5 +32,10 @@ module.exports = {
     registerUserProfile,
     editUserProfile,
     deleteUserProfile,
-    registerClient
+    listClients,
+    getClientById,
+    registerClient,
+    editClient,
+    deleteClient,
+    searchClients
 }
