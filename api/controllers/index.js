@@ -22,6 +22,11 @@ const {
     searchClients
 } = require('./clientsController');
 
+const {
+    listMetals,
+    registerMetal
+} = require('./metalsController');
+
 //exports
 module.exports = {
     listUsers,
@@ -37,5 +42,7 @@ module.exports = {
     registerClient,
     editClient,
     deleteClient,
-    searchClients
+    searchClients,
+    listMetals,
+    registerMetal
 }

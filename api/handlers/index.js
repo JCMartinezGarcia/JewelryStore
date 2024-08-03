@@ -22,6 +22,11 @@ const {
     searchClientsHandler
 } = require('./clientsHandler');
 
+const {
+    listMetalsHandler,
+    registerMetalHandler
+} = require('./metalsHandler');
+
 //exports
 module.exports = {
     listUserHandler,
@@ -37,6 +42,8 @@ module.exports = {
     registerClientHandler,
     editClientHandler,
     deleteClientHandler,
-    searchClientsHandler
+    searchClientsHandler,
+    listMetalsHandler,
+    registerMetalHandler
 }
 
