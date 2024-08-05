@@ -24,7 +24,10 @@ const {
 
 const {
     listMetals,
-    registerMetal
+    registerMetal,
+    editMetal,
+    getMetalByPk,
+    deleteMetal
 } = require('./metalsController');
 
 //exports
@@ -44,5 +47,8 @@ module.exports = {
     deleteClient,
     searchClients,
     listMetals,
-    registerMetal
+    registerMetal,
+    editMetal,
+    getMetalByPk,
+    deleteMetal
 }
