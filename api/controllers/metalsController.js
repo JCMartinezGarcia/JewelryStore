@@ -1,6 +1,6 @@
 //required modules
+const { where } = require('sequelize');
 const { Metal } = require('../models/index');
-const { Op, where } = require('sequelize');
 
 //controller functions
 
@@ -28,8 +28,57 @@ const registerMetal = async (metalParams) => {
     return metal;
 }
 
+/**
+ * edits metal instance info
+ * @param {*} metalParams - metal attributes to be updated
+ * @param {*} id - metal id
+ * @returns - returns 1 if it succeeded 0 if it failed
+ */
+
+const editMetal = async (metalParams, id) => {
+    //update metal instance
+    const metal = Metal.update(
+        metalParams,
+        {
+            where: {
+                id
+            }
+        }
+    );
+    //returns 1 if it succeeded 0 if it failed
+    return metal;
+}
+
+/**
+ * obtains metal instance by id
+ * @param {*} id - metal id
+ * @returns - metal instance by id
+ */
+
+const getMetalByPk = async (id) => {
+    //obtains metal by id
+    const metal = await Metal.findByPk(id);
+    //returns metal instance
+    return metal;
+}
+
+/**
+ * deletes a metal instance 
+ * @param {*} id - metal id
+ * @returns - returns 1 if it succeeded 0 if it falied
+ */
+const deleteMetal = async (id) => {
+    //deletes metal instance 
+    const metal = Metal.destroy({ where: { id } });
+    //returns 1 if it succeeded 0 if it falied
+    return metal;
+}
+
 //exports
 module.exports = {
     listMetals,
     registerMetal,
+    editMetal,
+    getMetalByPk,
+    deleteMetal
 }
