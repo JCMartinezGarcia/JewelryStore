@@ -4,7 +4,8 @@ const {
     registerMetal,
     editMetal,
     getMetalByPk,
-    deleteMetal
+    deleteMetal,
+    searchMetals
 } = require('../controllers');
 
 //handler functions
@@ -122,11 +123,34 @@ const deleteMetalHandler = async (req, res) => {
     }
 }
 
+/**
+ * handle logic to search for metals
+ * @param {*} req - request object, contains form input data
+ * @param {*} res - response object
+ * @returns - list of metals found in json format
+ */
+
+const searchMetalHandler = async (req, res) => {
+    try {
+        //search parameter
+        const { searchParam } = req.body;
+        //call search metals function
+        const metals = await searchMetals(searchParam);
+        //list of found metals
+        return res.status(200).json(metals);
+    } catch (error) {
+        //handle errors
+        console.error(error.message);
+        res.status(500).json({ message: 'Error searching metal', error: error.message });
+    }
+}
+
 //exports 
 module.exports = {
     listMetalsHandler,
     registerMetalHandler,
     editMetalHandler,
     getMetalHandler,
-    deleteMetalHandler
+    deleteMetalHandler,
+    searchMetalHandler
 }

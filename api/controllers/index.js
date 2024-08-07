@@ -27,7 +27,8 @@ const {
     registerMetal,
     editMetal,
     getMetalByPk,
-    deleteMetal
+    deleteMetal,
+    searchMetals
 } = require('./metalsController');
 
 //exports
@@ -50,5 +51,6 @@ module.exports = {
     registerMetal,
     editMetal,
     getMetalByPk,
-    deleteMetal
+    deleteMetal,
+    searchMetals
 }

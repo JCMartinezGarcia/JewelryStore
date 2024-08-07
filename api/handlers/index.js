@@ -27,7 +27,8 @@ const {
     registerMetalHandler,
     editMetalHandler,
     getMetalHandler,
-    deleteMetalHandler
+    deleteMetalHandler,
+    searchMetalHandler
 } = require('./metalsHandler');
 
 //exports
@@ -50,6 +51,7 @@ module.exports = {
     registerMetalHandler,
     editMetalHandler,
     getMetalHandler,
-    deleteMetalHandler
+    deleteMetalHandler,
+    searchMetalHandler
 }
 

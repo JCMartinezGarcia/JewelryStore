@@ -1,5 +1,5 @@
 //required modules
-const { where } = require('sequelize');
+const { where, Op } = require('sequelize');
 const { Metal } = require('../models/index');
 
 //controller functions
@@ -74,11 +74,29 @@ const deleteMetal = async (id) => {
     return metal;
 }
 
+/**
+ * search for metals matching the string parameter
+ * @param {*} searchParameter - search string parameter
+ * @returns - list of metals 
+ */
+
+const searchMetals = async (searchParameter) => {
+    //obtain metals matching search parameter
+    const metals = await Metal.findAll({
+        where: {
+            metal: searchParameter
+        }
+    });
+    //return list of metals
+    return metals;
+}
+
 //exports
 module.exports = {
     listMetals,
     registerMetal,
     editMetal,
     getMetalByPk,
-    deleteMetal
+    deleteMetal,
+    searchMetals
 }

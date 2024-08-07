@@ -7,7 +7,8 @@ const {
     listMetalsHandler,
     editMetalHandler,
     getMetalHandler,
-    deleteMetalHandler
+    deleteMetalHandler,
+    searchMetalHandler
 } = require('../handlers');
 
 //metals routes
@@ -16,6 +17,7 @@ router.post('/register', registerMetalHandler);
 router.put('/edit/:id', editMetalHandler);
 router.get('/find/:id', getMetalHandler);
 router.delete('/delete/:id', deleteMetalHandler);
+router.post('/search', searchMetalHandler);
 
 //exports
 module.exports = router;
