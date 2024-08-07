@@ -31,6 +31,10 @@ const {
     searchMetals
 } = require('./metalsController');
 
+const {
+    registerCarat
+} = require('./caratsController');
+
 //exports
 module.exports = {
     listUsers,
@@ -52,5 +56,6 @@ module.exports = {
     editMetal,
     getMetalByPk,
     deleteMetal,
-    searchMetals
+    searchMetals,
+    registerCarat
 }
