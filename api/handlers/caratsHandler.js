@@ -1,33 +1,67 @@
-//required modules
+// Required modules
 const {
+    listCarats,
     registerCarat,
+    editCarat
 } = require('../controllers');
 
-//handler functions
+// Helper function to handle errors
+const handleError = (res, message, error) => {
+    console.error(message, error);
+    res.status(500).json({ error: message, message: error.message });
+};
+
+// Handler functions
 
 /**
- * handles logic to register a new carat
- * @param {*} req - request object
- * @param {*} res - response object
- * @returns - new created carat instance
+ * Handles logic to list carats
+ * @param {*} req 
+ * @param {*} res 
+ * @returns {Promise<*>} List of carats in JSON format
  */
+const listCaratsHandler = async (req, res) => {
+    try {
+        const carats = await listCarats();
+        res.status(200).json(carats);
+    } catch (error) {
+        handleError(res, 'Error listing carats', error);
+    }
+};
 
+/**
+ * Handles logic to register a new carat
+ * @param {*} req - Request object
+ * @param {*} res - Response object
+ * @returns {Promise<*>} Newly created carat instance in JSON format
+ */
 const registerCaratHandler = async (req, res) => {
     try {
-        //carat data 
-        const caratData = req.body;
-        //call register carat function
-        const carat = await registerCarat(caratData);
-        //return created instance in json format
-        return res.status(201).json(carat);
+        const carat = await registerCarat(req.body);
+        res.status(201).json(carat);
     } catch (error) {
-        //handle errors
-        console.error('Error registering carat');
-        res.status(500).json({ error: 'Error registering carat', message: error.message });
+        handleError(res, 'Error registering carat', error);
     }
-}
+};
 
-//exports 
+/**
+ * Handles logic to edit carat instance
+ * @param {*} req - Request object
+ * @param {*} res - Response object
+ * @returns {Promise<number>} 1 if succeeded, 0 if failed
+ */
+const editCaratHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const carat = await editCarat(req.body, id);
+        res.status(202).json(carat);
+    } catch (error) {
+        handleError(res, 'Error editing carat', error);
+    }
+};
+
+// Exports 
 module.exports = {
-    registerCaratHandler
-}
+    listCaratsHandler,
+    registerCaratHandler,
+    editCaratHandler
+};
