@@ -32,7 +32,9 @@ const {
 } = require('./metalsController');
 
 const {
-    registerCarat
+    listCarats,
+    registerCarat,
+    editCarat
 } = require('./caratsController');
 
 //exports
@@ -57,5 +59,7 @@ module.exports = {
     getMetalByPk,
     deleteMetal,
     searchMetals,
-    registerCarat
+    registerCarat,
+    listCarats,
+    editCarat
 }

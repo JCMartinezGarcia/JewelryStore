@@ -32,7 +32,9 @@ const {
 } = require('./metalsHandler');
 
 const {
-    registerCaratHandler
+    listCaratsHandler,
+    registerCaratHandler,
+    editCaratHandler
 } = require('./caratsHandler');
 
 //exports
@@ -57,6 +59,8 @@ module.exports = {
     getMetalHandler,
     deleteMetalHandler,
     searchMetalHandler,
-    registerCaratHandler
+    listCaratsHandler,
+    registerCaratHandler,
+    editCaratHandler
 }
 
