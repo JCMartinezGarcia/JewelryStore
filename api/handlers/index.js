@@ -32,6 +32,10 @@ const {
 } = require('./metalsHandler');
 
 const {
+    registerProductLineHandler
+} = require('./productLinesHandler');
+
+const {
     listCaratsHandler,
     registerCaratHandler,
     editCaratHandler,
@@ -67,6 +71,7 @@ module.exports = {
     editCaratHandler,
     deleteCaratHandler,
     findCaratHandler,
-    searchCaratsHandler
+    searchCaratsHandler,
+    registerProductLineHandler
 }
 
