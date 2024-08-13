@@ -34,7 +34,10 @@ const {
 const {
     listCaratsHandler,
     registerCaratHandler,
-    editCaratHandler
+    editCaratHandler,
+    deleteCaratHandler,
+    findCaratHandler,
+    searchCaratsHandler
 } = require('./caratsHandler');
 
 //exports
@@ -61,6 +64,9 @@ module.exports = {
     searchMetalHandler,
     listCaratsHandler,
     registerCaratHandler,
-    editCaratHandler
+    editCaratHandler,
+    deleteCaratHandler,
+    findCaratHandler,
+    searchCaratsHandler
 }
 

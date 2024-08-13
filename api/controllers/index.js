@@ -34,7 +34,10 @@ const {
 const {
     listCarats,
     registerCarat,
-    editCarat
+    editCarat,
+    deleteCarat,
+    findCaratByPk,
+    searchCarats
 } = require('./caratsController');
 
 //exports
@@ -61,5 +64,8 @@ module.exports = {
     searchMetals,
     registerCarat,
     listCarats,
-    editCarat
+    editCarat,
+    deleteCarat,
+    findCaratByPk,
+    searchCarats
 }

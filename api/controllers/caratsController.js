@@ -1,5 +1,7 @@
 // Required modules
+const { where } = require('sequelize');
 const { Carat } = require('../models');
+const carat = require('../models/carat');
 
 // Controller functions
 
@@ -30,8 +32,40 @@ const editCarat = async (caratParams, id) => {
     return await Carat.update(caratParams, { where: { id } });
 };
 
+/**
+ * Deletes carat instance
+ * @param {*} id 
+ * @returns {Promise<number>} 1 if succeeded, 0 if failed
+ */
+const deleteCarat = async (id) => {
+    return await Carat.destroy({ where: { id } });
+};
+
+/**
+ * Obtains a single register form table by pk
+ * @param {*} id 
+ * @returns {Promise<Object>} Found register in db 
+ */
+
+const findCaratByPk = async (id) => {
+    return await Carat.findByPk(id);
+}
+
+/**
+ * Search for registers matching string parameter
+ * @param {*} searchParam - String search parameter
+ * @returns {Promise<Array>} Registers matching search param
+ */
+
+const searchCarats = async (searchParam) => {
+    return await Carat.findAll({ where: { carat: searchParam } });
+}
+
 module.exports = {
     listCarats,
     registerCarat,
-    editCarat
+    editCarat,
+    deleteCarat,
+    findCaratByPk,
+    searchCarats
 };
