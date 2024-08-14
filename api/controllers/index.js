@@ -32,6 +32,10 @@ const {
 } = require('./metalsController');
 
 const {
+    registerProductLine
+} = require('./productLineController');
+
+const {
     listCarats,
     registerCarat,
     editCarat,
@@ -67,5 +71,6 @@ module.exports = {
     editCarat,
     deleteCarat,
     findCaratByPk,
-    searchCarats
+    searchCarats,
+    registerProductLine
 }

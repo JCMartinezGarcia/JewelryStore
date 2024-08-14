@@ -1,5 +1,4 @@
 //required modules
-const { where, Op } = require('sequelize');
 const { Metal } = require('../models/index');
 
 //controller functions
