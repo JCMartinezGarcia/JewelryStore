@@ -16,7 +16,7 @@ router.use('/api/users/profile', userProfileRouter);
 router.use('/api/clients', clientsRouter);
 router.use('/api/metals', metalsRouter);
 router.use('/api/carats', caratsRouter);
-router.use('/api/product/lines', productLineRouter);
+router.use('/api/products/lines', productLineRouter);
 
 //Export module 
 module.exports = router;

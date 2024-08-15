@@ -1,11 +1,29 @@
 const {
-    registerProductLine
+    listProductLines,
+    registerProductLine,
+    editProductLine,
+    findProductLineByPk
 } = require('../controllers');
 
 
 function handleError(res, message, error) {
     console.error(message, error);
     res.status().json({ error: message, message: error.message });
+}
+
+/**
+ * Handle logic to obtain a list of product lines
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns {Promise<Array>} Array of objects
+ */
+const listProductLinesHandler = async (req, res) => {
+    try {
+        const productLines = await listProductLines();
+        res.status(200).json(productLines);
+    } catch (error) {
+        handleError(res, 'Error listing product lines', error);
+    }
 }
 
 /**
@@ -23,6 +41,41 @@ const registerProductLineHandler = async (req, res) => {
     }
 }
 
+/**
+ * Handles logic to edit entry
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns {Promise<number>} 1 if succeeded, 0 if failed
+ */
+const editProductLineHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const productLine = editProductLine(req.body, id);
+        res.status(202).json(productLine);
+    } catch (error) {
+        handleError(res, 'Error editing product line', error);
+    }
+}
+
+/**
+ * Handles logic to find an entry by pk
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns {Promise<Object>} found entry 
+ */
+const findProductLineHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const productLine = await findProductLineByPk(id);
+        res.status(200).json(productLine);
+    } catch (error) {
+        handleError(res, 'Error finding product line', error);
+    }
+}
+
 module.exports = {
-    registerProductLineHandler
+    listProductLinesHandler,
+    registerProductLineHandler,
+    editProductLineHandler,
+    findProductLineHandler
 }
