@@ -35,7 +35,9 @@ const {
     listProductLines,
     registerProductLine,
     editProductLine,
-    findProductLineByPk
+    findProductLineByPk,
+    deleteProductLine,
+    searchProductLines
 } = require('./productLineController');
 
 const {
@@ -46,6 +48,10 @@ const {
     findCaratByPk,
     searchCarats
 } = require('./caratsController');
+
+const {
+    registerProduct
+} = require('./productsController');
 
 //exports
 module.exports = {
@@ -78,5 +84,8 @@ module.exports = {
     listProductLines,
     registerProductLine,
     editProductLine,
-    findProductLineByPk
+    findProductLineByPk,
+    deleteProductLine,
+    searchProductLines,
+    registerProduct
 }

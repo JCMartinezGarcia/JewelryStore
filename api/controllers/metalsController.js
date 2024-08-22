@@ -1,96 +1,68 @@
-//required modules
-const { Metal } = require('../models/index');
+const { Metal } = require('../models');
 
-//controller functions
 
 /**
- * get list of all metals in db
- * @returns - list of metals
+ * Retrieves a list of all metals in the database.
+ * @returns {Promise<Array>} - List of metals.
  */
-
 const listMetals = async () => {
-    //get list of all metals
-    const metals = await Metal.findAll();
-    //return list of metals
-    return metals;
-}
+    return await Metal.findAll();
+};
 
 /**
- * registers a new metal in DB
- * @param {*} metalParams - object with metal data
- * @returns - created metal instance
+ * Registers a new metal in the database.
+ * @param {Object} metalParams - Object with metal data.
+ * @returns {Promise<Object>} - Created metal instance.
  */
 const registerMetal = async (metalParams) => {
-    // register a new metal
-    const metal = await Metal.create(metalParams);
-    // return created metal
-    return metal;
-}
+    return await Metal.create(metalParams);
+};
 
 /**
- * edits metal instance info
- * @param {*} metalParams - metal attributes to be updated
- * @param {*} id - metal id
- * @returns - returns 1 if it succeeded 0 if it failed
+ * Updates metal instance information.
+ * @param {Object} metalParams - Metal attributes to be updated.
+ * @param {number} id - Metal ID.
+ * @returns {Promise<number>} - 1 if succeeded, 0 if failed.
  */
-
-const editMetal = async (metalParams, id) => {
-    //update metal instance
-    const metal = Metal.update(
-        metalParams,
-        {
-            where: {
-                id
-            }
-        }
-    );
-    //returns 1 if it succeeded 0 if it failed
-    return metal;
-}
+const editMetal = async (id, metalParams) => {
+    const [updated] = await Metal.update(metalParams, {
+        where: { id }
+    });
+    return updated;
+};
 
 /**
- * obtains metal instance by id
- * @param {*} id - metal id
- * @returns - metal instance by id
+ * Retrieves a metal instance by its ID.
+ * @param {number} id - Metal ID.
+ * @returns {Promise<Object|null>} - Metal instance, or null if not found.
  */
-
 const getMetalByPk = async (id) => {
-    //obtains metal by id
-    const metal = await Metal.findByPk(id);
-    //returns metal instance
-    return metal;
-}
+    return await Metal.findByPk(id);
+};
 
 /**
- * deletes a metal instance 
- * @param {*} id - metal id
- * @returns - returns 1 if it succeeded 0 if it falied
+ * Deletes a metal instance.
+ * @param {number} id - Metal ID.
+ * @returns {Promise<number>} - 1 if succeeded, 0 if failed.
  */
 const deleteMetal = async (id) => {
-    //deletes metal instance 
-    const metal = Metal.destroy({ where: { id } });
-    //returns 1 if it succeeded 0 if it falied
-    return metal;
-}
+    return await Metal.destroy({ where: { id } });
+};
 
 /**
- * search for metals matching the string parameter
- * @param {*} searchParameter - search string parameter
- * @returns - list of metals 
+ * Searches for metals matching the provided search parameter.
+ * @param {string} searchParameter - Search string parameter.
+ * @returns {Promise<Array>} - List of metals matching the search criteria.
  */
-
 const searchMetals = async (searchParameter) => {
-    //obtain metals matching search parameter
-    const metals = await Metal.findAll({
+    return await Metal.findAll({
         where: {
             metal: searchParameter
         }
     });
-    //return list of metals
-    return metals;
-}
+};
 
-//exports
+// Exports
 module.exports = {
     listMetals,
     registerMetal,
@@ -98,4 +70,4 @@ module.exports = {
     getMetalByPk,
     deleteMetal,
     searchMetals
-}
+};
