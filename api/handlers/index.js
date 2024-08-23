@@ -35,7 +35,9 @@ const {
     listProductLinesHandler,
     registerProductLineHandler,
     editProductLineHandler,
-    findProductLineHandler
+    findProductLineHandler,
+    deleteProductLineHandler,
+    searchProductLineHandler
 } = require('./productLinesHandler');
 
 const {
@@ -44,8 +46,12 @@ const {
     editCaratHandler,
     deleteCaratHandler,
     findCaratHandler,
-    searchCaratsHandler
+    searchCaratsHandler,
 } = require('./caratsHandler');
+
+const {
+    registerProductHandler
+} = require('./productsHandler');
 
 //exports
 module.exports = {
@@ -78,6 +84,9 @@ module.exports = {
     listProductLinesHandler,
     registerProductLineHandler,
     editProductLineHandler,
-    findProductLineHandler
+    findProductLineHandler,
+    deleteProductLineHandler,
+    searchProductLineHandler,
+    registerProductHandler
 }
 

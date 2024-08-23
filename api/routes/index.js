@@ -9,6 +9,7 @@ const clientsRouter = require('./clients');
 const metalsRouter = require('./metals');
 const caratsRouter = require('./carats');
 const productLineRouter = require('./productline');
+const productsRouter = require('./products');
 
 //paths 
 router.use('/api/users', userRouter);
@@ -17,6 +18,7 @@ router.use('/api/clients', clientsRouter);
 router.use('/api/metals', metalsRouter);
 router.use('/api/carats', caratsRouter);
 router.use('/api/products/lines', productLineRouter);
+router.use('/api/products', productsRouter);
 
 //Export module 
 module.exports = router;

@@ -1,4 +1,4 @@
-//required modules
+// Required modules
 const {
     listMetals,
     registerMetal,
@@ -8,144 +8,106 @@ const {
     searchMetals
 } = require('../controllers');
 
-//handler functions
-
-/**
- * handles logic to list all metals in db
- * @param {*} req - request object
- * @param {*} res - response object
- * @returns - lsit of metals on json format
- */
-
-const listMetalsHandler = async (req, res) => {
-
-    try {
-        //call to list metals function
-        const metals = await listMetals();
-        //return status and list of metals
-        return res.status(200).json(metals);
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).json({ error: 'error listing metals', message: error.message });
-    }
+function handleError(res, msg, error) {
+    console.error(msg, error);
+    res.status(500).json({ error: msg, message: msg });
 }
 
 /**
- * handle logic to register a new metal
- * @param {*} req - request object 
- * @param {*} res - response object
- * @returns - created metal instance in json format
+ * Handles logic to list all metals in the database.
+ * @param {Object} req - Request object.
+ * @param {Object} res - Response object.
+ * @returns {Promise<void>} - List of metals in JSON format.
+ */
+const listMetalsHandler = async (req, res) => {
+    try {
+        const metals = await listMetals();
+        res.status(200).json(metals);
+    } catch (error) {
+        handleError(res, 'Error listing metals:', error);
+    }
+};
+
+/**
+ * Handles logic to register a new metal.
+ * @param {Object} req - Request object.
+ * @param {Object} res - Response object.
+ * @returns {Promise<void>} - Created metal instance in JSON format.
  */
 const registerMetalHandler = async (req, res) => {
     try {
-        //metal form data 
-        const metalData = req.body;
-        //call to register function
-        const metal = await registerMetal(metalData);
-        //return status and created metal
-        return res.status(201).json(metal);
+        const metal = await registerMetal(req.body);
+        res.status(201).json(metal);
     } catch (error) {
-        //handle errors
-        console.error(error.message);
-        res.status(500).json({ message: 'Error registering a new metal', error: error.message });
+        handleError(res, 'Error registering metal:', error);
     }
-}
+};
 
 /**
- * handles logic to update metal info
- * @param {*} req - request object, contains form input data
- * @param {*} res - response object
- * @returns - updated metal instance
+ * Handles logic to update metal information.
+ * @param {Object} req - Request object.
+ * @param {Object} res - Response object.
+ * @returns {Promise<void>} Success or failure indicator in JSON format.
  */
-
 const editMetalHandler = async (req, res) => {
     try {
-        //metal id
         const { id } = req.params;
-        //form metal data to be updated
-        const metalData = req.body;
-        //call function edit metal 
-        const metal = await editMetal(metalData, id);
-        //returns 1 if it succeeded 0 if it failed
-        return res.status(201).json(metal);
+        const result = await editMetal(id, req.body);
+        res.status(200).json({ success: result === 1 });
     } catch (error) {
-        //handle errors
-        console.error(error.message);
-        res.status(500).json({ message: 'Error editing metal', error: error.message });
-
+        handleError(res, 'Error editing metal:', error);
     }
-}
+};
 
 /**
- * handles logic to get a metal by id 
- * @param {*} req - request object
- * @param {*} res - response object
- * @returns - returns metal instance by id
+ * Handles logic to get a metal by its ID.
+ * @param {Object} req - Request object.
+ * @param {Object} res - Response object.
+ * @returns {Promise<void>} - Metal instance in JSON format.
  */
 const getMetalHandler = async (req, res) => {
-
     try {
-        //metal id
         const { id } = req.params;
-        //call get metal by pk function
         const metal = await getMetalByPk(id);
-        //return metal 
-        return res.status(200).json(metal);
+        res.status(200).json(metal);
     } catch (error) {
-        //handle errors
-        console.error(error.message);
-        res.status(500).json({ message: 'Error finding metal', error: error.message });
-
+        handleError(res, 'Error finding metal:', error);
     }
-}
+};
 
 /**
- * handles logic to delete metal
- * @param {*} req - request object
- * @param {*} res - response object
- * @returns - returns 1 if it succeeded 0 if it falied
-
+ * Handles logic to delete a metal.
+ * @param {Object} req - Request object.
+ * @param {Object} res - Response object.
+ * @returns {Promise<void>} - Success or failure indicator in JSON format.
  */
-
 const deleteMetalHandler = async (req, res) => {
-
     try {
-        //metal id
         const { id } = req.params;
-        //call delete metal handler
-        const metal = await deleteMetal(id);
-        //returns 1 if it succeeded 0 if it falied
-        return res.status(200).json(metal);
+        const result = await deleteMetal(id);
+        res.status(200).json({ success: result === 1 });
     } catch (error) {
-        //handle errors
-        console.error(error.message);
-        res.status(500).json({ message: 'Error deleting metal', error: error.message });
+        handleError(res, 'Error deleting metal:', error);
     }
-}
+};
 
 /**
- * handle logic to search for metals
- * @param {*} req - request object, contains form input data
- * @param {*} res - response object
- * @returns - list of metals found in json format
+ * Handles logic to search for metals.
+ * @param {Object} req - Request object.
+ * @param {Object} res - Response object.
+ * @returns {Promise<Array>} - List of metals found in JSON format.
  */
-
 const searchMetalHandler = async (req, res) => {
     try {
-        //search parameter
         const { searchParam } = req.body;
-        //call search metals function
         const metals = await searchMetals(searchParam);
-        //list of found metals
-        return res.status(200).json(metals);
+        res.status(200).json(metals);
     } catch (error) {
-        //handle errors
-        console.error(error.message);
-        res.status(500).json({ message: 'Error searching metal', error: error.message });
+        handleError(res, 'Error searching metals:', error);
     }
-}
+};
 
-//exports 
+// Exports
 module.exports = {
     listMetalsHandler,
     registerMetalHandler,
@@ -153,4 +115,4 @@ module.exports = {
     getMetalHandler,
     deleteMetalHandler,
     searchMetalHandler
-}
+};
