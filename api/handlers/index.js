@@ -50,7 +50,12 @@ const {
 } = require('./caratsHandler');
 
 const {
-    registerProductHandler
+    listProductsHandler,
+    registerProductHandler,
+    editProductHandler,
+    deleteProductHandler,
+    findProductHandler,
+    searchProductsHandler
 } = require('./productsHandler');
 
 //exports
@@ -87,6 +92,11 @@ module.exports = {
     findProductLineHandler,
     deleteProductLineHandler,
     searchProductLineHandler,
-    registerProductHandler
+    listProductsHandler,
+    registerProductHandler,
+    editProductHandler,
+    deleteProductHandler,
+    findProductHandler,
+    searchProductsHandler,
 }
 
