@@ -50,7 +50,12 @@ const {
 } = require('./caratsController');
 
 const {
-    registerProduct
+    listProducts,
+    registerProduct,
+    editProduct,
+    deleteProduct,
+    searchProducts,
+    findProductByPk
 } = require('./productsController');
 
 //exports
@@ -87,5 +92,10 @@ module.exports = {
     findProductLineByPk,
     deleteProductLine,
     searchProductLines,
-    registerProduct
+    listProducts,
+    registerProduct,
+    editProduct,
+    deleteProduct,
+    searchProducts,
+    findProductByPk
 }
