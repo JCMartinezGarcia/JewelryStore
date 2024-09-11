@@ -58,6 +58,15 @@ const {
     findProductByPk
 } = require('./productsController');
 
+const {
+    listSales,
+    registerSale,
+    editSale,
+    findSaleByPk,
+    searchSales,
+    cancelSale
+} = require('./salesController');
+
 //exports
 module.exports = {
     listUsers,
@@ -97,5 +106,11 @@ module.exports = {
     editProduct,
     deleteProduct,
     searchProducts,
-    findProductByPk
+    findProductByPk,
+    listSales,
+    registerSale,
+    editSale,
+    findSaleByPk,
+    searchSales,
+    cancelSale
 }

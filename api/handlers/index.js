@@ -58,6 +58,15 @@ const {
     searchProductsHandler
 } = require('./productsHandler');
 
+const {
+    listSalesHandler,
+    registerSaleHandler,
+    editSaleHandler,
+    findSaleHandler,
+    searchSalesHandler,
+    cancelSaleHandler
+} = require('./salesHandler');
+
 //exports
 module.exports = {
     listUserHandler,
@@ -98,5 +107,11 @@ module.exports = {
     deleteProductHandler,
     findProductHandler,
     searchProductsHandler,
+    listSalesHandler,
+    registerSaleHandler,
+    editSaleHandler,
+    findSaleHandler,
+    searchSalesHandler,
+    cancelSaleHandler
 }
 
