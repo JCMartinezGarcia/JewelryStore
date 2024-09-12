@@ -60,7 +60,8 @@ const handleError = (res, message, error) => {
  * @param {Object} req - Request object.
  * @param {Object} res - Response object.
  * @returns {Promise<void>} - Sends the result of the delete operation.
- */const deleteCaratHandler = async (req, res) => {
+ */
+const deleteCaratHandler = async (req, res) => {
     try {
         const { id } = req.params;
         const deleted = await deleteCarat(id);
@@ -75,7 +76,8 @@ const handleError = (res, message, error) => {
  * @param {Object} req - Request object.
  * @param {Object} res - Response object.
  * @returns {Promise<void>} - Sends the found carat instance.
- */const findCaratHandler = async (req, res) => {
+ */
+const findCaratHandler = async (req, res) => {
     try {
         const { id } = req.params;
         const carat = await findCaratByPk(id);
