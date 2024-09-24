@@ -67,6 +67,12 @@ const {
     cancelSale
 } = require('./salesController');
 
+const {
+    listSaleDetail,
+    registerSaleDetails,
+    editSaleDetail
+} = require('./saleDetailsController');
+
 //exports
 module.exports = {
     listUsers,
@@ -112,5 +118,8 @@ module.exports = {
     editSale,
     findSaleByPk,
     searchSales,
-    cancelSale
+    cancelSale,
+    listSaleDetail,
+    registerSaleDetails,
+    editSaleDetail
 }
