@@ -12,6 +12,7 @@ const productLineRouter = require('./productline');
 const productsRouter = require('./products');
 const salesRouter = require('./sales');
 const saleDetailsRouter = require('./salesDetails');
+const debtsRouter = require('./debts');
 
 //paths 
 router.use('/api/users', userRouter);
@@ -23,6 +24,7 @@ router.use('/api/products/lines', productLineRouter);
 router.use('/api/products', productsRouter);
 router.use('/api/sales', salesRouter);
 router.use('/api/sales/details', saleDetailsRouter);
+router.use('/api/debts', debtsRouter);
 
 //Export module 
 module.exports = router;
