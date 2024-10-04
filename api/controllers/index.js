@@ -73,6 +73,15 @@ const {
     editSaleDetail
 } = require('./saleDetailsController');
 
+const {
+    listDebts,
+    registerDebt,
+    editDebt,
+    findDebtDetails,
+    deleteDebt,
+    searchDebts
+} = require('./debtsController');
+
 //exports
 module.exports = {
     listUsers,
@@ -121,5 +130,11 @@ module.exports = {
     cancelSale,
     listSaleDetail,
     registerSaleDetails,
-    editSaleDetail
+    editSaleDetail,
+    listDebts,
+    registerDebt,
+    editDebt,
+    findDebtDetails,
+    deleteDebt,
+    searchDebts
 }

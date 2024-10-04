@@ -73,6 +73,15 @@ const {
     editSaleDetailsHandler
 } = require('./salesDetailsHandler');
 
+const {
+    listDebtsHandler,
+    registerDebtHandler,
+    editDebtHandler,
+    detailsDebtHandler,
+    deleteDebtHandler,
+    searchDebtsHandler
+} = require('./debtsHandler');
+
 //exports
 module.exports = {
     listUserHandler,
@@ -121,6 +130,12 @@ module.exports = {
     cancelSaleHandler,
     registerSaleDetailsHandler,
     listSaleDetailsHandler,
-    editSaleDetailsHandler
+    editSaleDetailsHandler,
+    listDebtsHandler,
+    registerDebtHandler,
+    editDebtHandler,
+    detailsDebtHandler,
+    deleteDebtHandler,
+    searchDebtsHandler
 }
 
