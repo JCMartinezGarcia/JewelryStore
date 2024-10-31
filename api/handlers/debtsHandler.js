@@ -108,6 +108,5 @@ module.exports = {
     editDebtHandler,
     detailsDebtHandler,
     deleteDebtHandler,
-    // findCaratHandler,
     searchDebtsHandler
 };
