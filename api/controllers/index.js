@@ -1,4 +1,3 @@
-//required modules
 const {
     listUsers,
     registerUser,
@@ -82,7 +81,15 @@ const {
     searchDebts
 } = require('./debtsController');
 
-//exports
+const {
+    listPayments,
+    registerPayment,
+    editPayment,
+    cancelPayment,
+    searchPayments,
+    getPaymentByPk
+} = require('./paymentsController');
+
 module.exports = {
     listUsers,
     registerUser,
@@ -136,5 +143,11 @@ module.exports = {
     editDebt,
     findDebtDetails,
     deleteDebt,
-    searchDebts
+    searchDebts,
+    listPayments,
+    registerPayment,
+    editPayment,
+    cancelPayment,
+    searchPayments,
+    getPaymentByPk
 }
