@@ -1,5 +1,5 @@
 //required models
-const { Client } = require('../models/index');
+const { Client} = require('../models/index');
 const { Op } = require('sequelize');
 //controller functions
 
