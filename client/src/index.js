@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { NextUIProvider } from '@nextui-org/react';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import axios from "axios";
+import './index.css';
 
+axios.defaults.baseURL = "http://localhost:4000/api/";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <NextUIProvider>
+      <App />
+    </NextUIProvider>
   </React.StrictMode>
 );
 
