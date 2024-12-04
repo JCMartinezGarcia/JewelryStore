@@ -3,6 +3,7 @@ const {
     registerSale,
     editSale,
     findSaleByPk,
+    listSalesByYear,
     searchSales,
     cancelSale
 } = require('../controllers');
@@ -32,6 +33,21 @@ const listSalesHandler = async (req, res) => {
         handleError(res, 'Error listing sales', error);
     }
 }
+
+/**
+ * Handles logic to return a list of sales amounts by year
+ * @returns - List of sales amounts by year
+ */
+const listSalesByYearHandler = async (req, res) => {
+    const { year } = req.params;
+    try {
+        const sales = await listSalesByYear(year);
+        res.status(200).json(sales);
+    } catch (error) {
+        handleError(res, 'Error listing sales by year', error);
+    }
+}
+
 
 /**
  * Handles logic to register a new sale.
@@ -117,6 +133,7 @@ const cancelSaleHandler = async (req, res) => {
 
 module.exports = {
     listSalesHandler,
+    listSalesByYearHandler,
     registerSaleHandler,
     editSaleHandler,
     findSaleHandler,

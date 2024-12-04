@@ -62,6 +62,7 @@ const {
     registerSale,
     editSale,
     findSaleByPk,
+    listSalesByYear,
     searchSales,
     cancelSale
 } = require('./salesController');
@@ -130,6 +131,7 @@ module.exports = {
     searchProducts,
     findProductByPk,
     listSales,
+    listSalesByYear,
     registerSale,
     editSale,
     findSaleByPk,
