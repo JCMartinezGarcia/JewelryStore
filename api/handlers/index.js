@@ -62,6 +62,7 @@ const {
     registerSaleHandler,
     editSaleHandler,
     findSaleHandler,
+    listSalesByYearHandler,
     searchSalesHandler,
     cancelSaleHandler
 } = require('./salesHandler');
@@ -134,6 +135,7 @@ module.exports = {
     registerSaleHandler,
     editSaleHandler,
     findSaleHandler,
+    listSalesByYearHandler,
     searchSalesHandler,
     cancelSaleHandler,
     registerSaleDetailsHandler,

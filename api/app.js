@@ -9,6 +9,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
+const cors = require('cors');
+
 var app = express();
 
 // view engine setup
@@ -21,6 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// Configuración de CORS
+app.use(cors({
+  origin: 'http://localhost:3000', // Permitir solo este origen
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+  credentials: true // Si necesitas enviar cookies o autenticación
+}));
 //routes
 app.use('/', indexRouter);
 
@@ -39,5 +47,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

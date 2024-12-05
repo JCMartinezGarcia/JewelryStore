@@ -1,4 +1,5 @@
 const { Sale } = require('../models');
+const { Op, sql } = require('@sequelize/core');
 
 /**
  * Registers a new sale in the database.
@@ -28,6 +29,15 @@ const editSale = async (id, params) => {
  */
 const listSales = () => {
     return Sale.findAll({ where: { isCancel: false } });
+}
+/**
+ * Retrieves a list of all sales by year in the database
+ * @param {*} year 
+ * @returns 
+ */
+const listSalesByYear = async (year) => {
+    const sales = await Sale.getSalesByYear(year);
+    return sales;
 }
 
 /**
@@ -63,6 +73,7 @@ module.exports = {
     registerSale,
     editSale,
     findSaleByPk,
+    listSalesByYear,
     searchSales,
     cancelSale
 }
