@@ -8,6 +8,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<MasterLayOut view={'Main'} />} />
+          <Route path='/usuarios' element={<MasterLayOut view={'Users'} />} />
+          <Route path='/usuarios/registrar' element={<MasterLayOut view={'Users Register'} />} />
         </Routes>
       </Router>
     </div>

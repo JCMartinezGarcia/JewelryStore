@@ -1,4 +1,3 @@
-//required modules
 var express = require('express');
 var router = express.Router();
 
@@ -6,14 +5,14 @@ const {
     listUserHandler,
     registerUserHandler,
     editUserHandler,
-    deleteUserHandler
+    deleteUserHandler,
+    verifyEmailHandler
 } = require('../handlers');
 
-//user Routes
 router.get('/list', listUserHandler);
 router.post('/register', registerUserHandler);
 router.put('/edit/:id', editUserHandler);
 router.delete('/delete/:id', deleteUserHandler);
+router.post('/validate-email', verifyEmailHandler);
 
-//export handlers
 module.exports = router;

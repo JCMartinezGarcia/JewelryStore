@@ -2,7 +2,8 @@ const {
     listUsers,
     registerUser,
     editUser,
-    deleteUser
+    deleteUser,
+    verifyEmail
 } = require('./userController');
 
 const {
@@ -151,5 +152,6 @@ module.exports = {
     editPayment,
     cancelPayment,
     searchPayments,
-    getPaymentByPk
+    getPaymentByPk,
+    verifyEmail
 }

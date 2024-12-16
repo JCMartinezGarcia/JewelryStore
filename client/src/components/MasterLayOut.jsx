@@ -1,19 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Main from "../views/Main";
+import Users from "../views/Users/Users";
+import UsersRegister from "../views/Users/UsersRegister";
 import NavigationBar from "./NavigationBar";
+
 const MasterLayOut = ({ view }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [screen, setScreen] = useState(false);
+
+  useEffect(() => {
+    if (view === 'Users Register') { setScreen(true); }
+  }, [view]);
+
   let viewComponent;
   switch (view) {
     case 'Main':
       viewComponent = <Main />;
       break;
-
+    case 'Users':
+      viewComponent = <Users />
+      break;
+    case 'Users Register':
+      viewComponent = <UsersRegister />
+      break;
     default:
       break;
   }
   return (
-    <div className="flex">
+    <div className={(screen) ? 'flex h-screen' : 'flex'}>
       {/* Sidebar */}
       <div
         className={`fixed inset-y-0 left-0 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
@@ -21,8 +35,8 @@ const MasterLayOut = ({ view }) => {
       >
         <div className="p-4 text-lg font-bold border-b border-gray-700">Admin Panel</div>
         <nav className="flex flex-col p-4 space-y-4">
-          <a href="#" className="hover:bg-gray-700 p-2 rounded">Dashboard</a>
-          <a href="#" className="hover:bg-gray-700 p-2 rounded">Users</a>
+          <a href="/" className="hover:bg-gray-700 p-2 rounded">Dashboard</a>
+          <a href="/usuarios" className="hover:bg-gray-700 p-2 rounded">Users</a>
           <a href="#" className="hover:bg-gray-700 p-2 rounded">Settings</a>
           <a href="#" className="hover:bg-gray-700 p-2 rounded">Logout</a>
         </nav>
