@@ -1,6 +1,4 @@
-//import models
 const { User } = require('../models/index');
-//controller Function
 
 /**
  * gets all users
@@ -14,17 +12,15 @@ const listUsers = async () => {
 }
 
 /**
- * register a new user in DB
+ * Register a new user in DB
  * @param {*} email 
  * @param {*} password 
  * @returns 
  */
 const registerUser = async (email, password) => {
-    // register a new user
     const usr = await User.create({ email: email, password: password });
     //create user profile
     usr.createUserProfile({ idUser: usr.id });
-    // return created user
     return usr;
 }
 
@@ -73,10 +69,15 @@ const deleteUser = (id) => {
     return user;
 }
 
+const verifyEmail = (email) => {
+    return User.isEmailRegistered(email);
+}
+
 //exports
 module.exports = {
     listUsers,
     registerUser,
     editUser,
-    deleteUser
+    deleteUser,
+    verifyEmail
 }

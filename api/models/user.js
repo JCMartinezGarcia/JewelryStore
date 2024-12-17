@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idUser'
       });
     }
+
+    static async isEmailRegistered(email) {
+      return this.findOne({ where: { email } })
+    }
+
   }
   User.init({
     email: {

@@ -2,7 +2,8 @@ const {
     listUserHandler,
     registerUserHandler,
     editUserHandler,
-    deleteUserHandler
+    deleteUserHandler,
+    verifyEmailHandler
 } = require('./userHandler');
 
 const {
@@ -152,6 +153,7 @@ module.exports = {
     editPaymentHandler,
     cancelPaymentHandler,
     searchPaymentHandler,
-    detailsPaymentHandler
+    detailsPaymentHandler,
+    verifyEmailHandler
 }
 

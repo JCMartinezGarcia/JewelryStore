@@ -1,15 +1,15 @@
-//import controllers 
 const {
     listUsers,
     registerUser,
     editUser,
-    deleteUser
+    deleteUser,
+    verifyEmail
 } = require('../controllers');
 
-//required modules
+const { randomPassword } = require('./Utils/users');
+
 const bcrypt = require('bcrypt');
 
-//handler functions 
 /**
  * handle login to return list of all users
  * @param {*} req 
@@ -36,13 +36,10 @@ const listUserHandler = async (req, res) => {
 const registerUserHandler = async (req, res) => {
     const saltRounds = 10;
     try {
-        //destructure request data
-        const { email, password } = req.body;
-        //hash password
+        const { email } = req.body;
+        const password = randomPassword(4);
         const hashedPass = await bcrypt.hash(password, saltRounds);
-        //call register controller function
         const user = await registerUser(email, hashedPass);
-        //return response
         res.status(201).json(user);
     } catch (error) {
         //handle errors
@@ -92,10 +89,23 @@ const deleteUserHandler = async (req, res) => {
     }
 }
 
+const verifyEmailHandler = async (req, res) => {
+    try {
+        const { email } = req.body;
+        if (!email) {
+            return res.status(400).json({ message: 'Email is required' });
+        }
+        res.status(200).json({ isAvailable: !await verifyEmail(email) });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+}
+
 //exports
 module.exports = {
     listUserHandler,
     registerUserHandler,
     editUserHandler,
-    deleteUserHandler
+    deleteUserHandler,
+    verifyEmailHandler
 }
