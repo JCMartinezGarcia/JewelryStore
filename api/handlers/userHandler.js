@@ -3,7 +3,8 @@ const {
     registerUser,
     editUser,
     deleteUser,
-    verifyEmail
+    verifyEmail,
+    findUser
 } = require('../controllers');
 
 const { randomPassword } = require('./Utils/users');
@@ -55,15 +56,11 @@ const registerUserHandler = async (req, res) => {
  */
 const editUserHandler = async (req, res) => {
     try {
-        //destructure request data
         const { email } = req.body;
         const { id } = req.params;
-        //call edit user controller function
         const user = await editUser(email, id);
-        //return response
         res.status(202).json(user);
     } catch (error) {
-        //handle errors
         console.log('Error editing user:', error.message);
         res.status(500).json({ message: 'Error editing user', error: error.message });
     }
@@ -101,11 +98,23 @@ const verifyEmailHandler = async (req, res) => {
     }
 }
 
+
+const findUserHandler = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const user = await findUser(id);
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error });
+    }
+}
+
 //exports
 module.exports = {
     listUserHandler,
     registerUserHandler,
     editUserHandler,
     deleteUserHandler,
-    verifyEmailHandler
+    verifyEmailHandler,
+    findUserHandler
 }

@@ -21,6 +21,25 @@ module.exports = (sequelize, DataTypes) => {
       return this.findOne({ where: { email } })
     }
 
+    static findUserByPK(id) {
+      return this.findByPk(id);
+    }
+
+    static async edit(id, email) {
+      const user = await this.update(
+        { email },
+        {
+          where: {
+            id
+          }
+        }
+      );
+      if (!user[0]) {
+        throw new Error('User does not exists in database');
+      }
+      console.log(user);
+      return user;
+    }
   }
   User.init({
     email: {

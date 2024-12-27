@@ -25,28 +25,14 @@ const registerUser = async (email, password) => {
 }
 
 /**
- * edits an user 
+ * Edits an user 
  * @param {*} email 
  * @param {*} password 
  * @param {*} id 
  * @returns 
  */
 const editUser = async (email, id) => {
-    // edits an user
-    const usr = await User.update(
-        { email },
-        {
-            where: {
-                id
-            }
-        }
-    );
-    //validate user was found to be edited
-    if (!usr[0]) {
-        throw new Error('User does not exists in database');
-    }
-    // return updated user
-    return usr;
+    return User.edit(id, email);
 }
 
 /**
@@ -73,11 +59,16 @@ const verifyEmail = (email) => {
     return User.isEmailRegistered(email);
 }
 
+const findUser = (id) => {
+    return User.findUserByPK(id);
+}
+
 //exports
 module.exports = {
     listUsers,
     registerUser,
     editUser,
     deleteUser,
-    verifyEmail
+    verifyEmail,
+    findUser
 }
