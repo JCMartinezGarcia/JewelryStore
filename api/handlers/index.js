@@ -3,7 +3,8 @@ const {
     registerUserHandler,
     editUserHandler,
     deleteUserHandler,
-    verifyEmailHandler
+    verifyEmailHandler,
+    findUserHandler
 } = require('./userHandler');
 
 const {
@@ -95,6 +96,7 @@ const {
 
 module.exports = {
     listUserHandler,
+    findUserHandler,
     registerUserHandler,
     editUserHandler,
     deleteUserHandler,

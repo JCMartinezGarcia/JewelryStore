@@ -10,7 +10,7 @@ import {
   Chip,
   Tooltip,
 } from "@nextui-org/react";
-
+import { useNavigate } from "react-router-dom";
 export const columns = [
   { name: "USUARIO", uid: "name" },
   // { name: "ROLE", uid: "role" },
@@ -200,10 +200,7 @@ const statusColorMap = {
 
 export default function UsersTable({ users }) {
 
-  useEffect(() => {
-    console.log(users);
-  }, []);
-
+  const navigate = useNavigate();
   const renderCell = React.useCallback((user, columnKey) => {
     const cellValue = user[columnKey];
 
@@ -240,12 +237,18 @@ export default function UsersTable({ users }) {
               </span>
             </Tooltip>
             <Tooltip color="" content="Edit user">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+              <span
+                className="text-lg text-default-400 cursor-pointer active:opacity-50"
+                onClick={() => navigate(`/usuarios/editar/${user.id}`)}
+              >
                 <EditIcon />
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Delete user">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
+              <span
+                className="text-lg text-danger cursor-pointer active:opacity-50"
+                onClick={() => handleDelete(user.id, email)}
+              >
                 <DeleteIcon />
               </span>
             </Tooltip>
@@ -256,6 +259,16 @@ export default function UsersTable({ users }) {
     }
   }, []);
 
+  const handleDelete = (id, email) => {
+    Swal.fire({
+      title: '¿Seguro quieres eliminar el usuario?',
+      html: `Usuario actualizado con éxito.`,
+      icon: 'danger',
+      allowOutsideClick: false
+    }).then((result) => {
+      if (result.isConfirmed) navigate('/usuarios');
+    });
+  }
   return (
     <Table aria-label="Example table with custom cells">
       <TableHeader columns={columns}>

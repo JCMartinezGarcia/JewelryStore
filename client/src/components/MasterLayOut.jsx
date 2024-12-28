@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Main from "../views/Main";
 import Users from "../views/Users/Users";
 import UsersRegister from "../views/Users/UsersRegister";
+import UsersEdit from "../views/Users/UsersEdit";
 import NavigationBar from "./NavigationBar";
 
 const MasterLayOut = ({ view }) => {
@@ -9,7 +10,7 @@ const MasterLayOut = ({ view }) => {
   const [screen, setScreen] = useState(false);
 
   useEffect(() => {
-    if (view === 'Users Register') { setScreen(true); }
+    if (view === 'Users Register' || view === 'Users Edit') { setScreen(true); }
   }, [view]);
 
   let viewComponent;
@@ -22,6 +23,9 @@ const MasterLayOut = ({ view }) => {
       break;
     case 'Users Register':
       viewComponent = <UsersRegister />
+      break;
+    case 'Users Edit':
+      viewComponent = <UsersEdit />
       break;
     default:
       break;
