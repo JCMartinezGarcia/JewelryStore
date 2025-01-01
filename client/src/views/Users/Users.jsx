@@ -9,12 +9,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Users = () => {
 
+
     useEffect(() => {
         listUsers();
     }, []);
 
     const navigate = useNavigate();
-
     const [users, setUsers] = useState([]);
 
     const handleError = (message, error) => {
@@ -55,7 +55,7 @@ const Users = () => {
                 </Button >
             </div>
             <br />
-            <UsersTable users={users} />
+            <UsersTable users={users} listUsers={listUsers} />
         </div>
     );
 }
