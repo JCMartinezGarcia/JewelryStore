@@ -67,20 +67,16 @@ const editUserHandler = async (req, res) => {
 }
 
 /**
- * handle login to delete an user
+ * Handles login to delete an user
  * @param {*} req 
  * @param {*} res 
  */
 const deleteUserHandler = async (req, res) => {
     try {
-        //destructure data
         const { id } = req.params;
-        //call delete user controller function
         const user = await deleteUser(id);
-        //return deleted user
         res.status(200).json(user);
     } catch (error) {
-        //handle errors
         console.log('Error deleting user:', error.message);
         res.status(500).json({ message: 'Error deleting user', error: error.message });
     }

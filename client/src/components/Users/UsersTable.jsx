@@ -11,6 +11,9 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+import axios from "axios";
+
 export const columns = [
   { name: "USUARIO", uid: "name" },
   // { name: "ROLE", uid: "role" },
@@ -100,6 +103,7 @@ export const EyeIcon = (props) => {
     </svg>
   );
 };
+
 
 export const DeleteIcon = (props) => {
   return (
@@ -198,7 +202,11 @@ const statusColorMap = {
   vacation: "warning",
 };
 
-export default function UsersTable({ users }) {
+const handleError = (message, error) => {
+  console.error(`${message}:`, error?.message || error);
+};
+
+export default function UsersTable({ users, listUsers }) {
 
   const navigate = useNavigate();
   const renderCell = React.useCallback((user, columnKey) => {
@@ -232,7 +240,8 @@ export default function UsersTable({ users }) {
         return (
           <div className="relative flex items-end gap-2">
             <Tooltip content="Details">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+              <span
+                className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <EyeIcon />
               </span>
             </Tooltip>
@@ -247,7 +256,7 @@ export default function UsersTable({ users }) {
             <Tooltip color="danger" content="Delete user">
               <span
                 className="text-lg text-danger cursor-pointer active:opacity-50"
-                onClick={() => handleDelete(user.id, email)}
+                onClick={() => handleDelete(user.id, user.email)}
               >
                 <DeleteIcon />
               </span>
@@ -259,14 +268,36 @@ export default function UsersTable({ users }) {
     }
   }, []);
 
+  const deleteUser = async (id) => {
+    try {
+      const result = await axios.delete(`users/delete/${id}`);
+      if (result.data) return result.data;
+    } catch (error) {
+      handleError('Error deleting user', error);
+    }
+  }
+
   const handleDelete = (id, email) => {
     Swal.fire({
       title: '¿Seguro quieres eliminar el usuario?',
-      html: `Usuario actualizado con éxito.`,
-      icon: 'danger',
+      html: `El usuario <b>${email}</b> será eliminado del sistema.`,
+      icon: 'warning',
+      showCancelButton: true,
       allowOutsideClick: false
-    }).then((result) => {
-      if (result.isConfirmed) navigate('/usuarios');
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (await deleteUser(id)) {
+          Swal.fire({
+            title: '¡Usuario eliminado con exito!',
+            icon: 'success',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              listUsers();
+            }
+          });
+        }
+      }
     });
   }
   return (

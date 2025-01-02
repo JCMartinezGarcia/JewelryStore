@@ -36,22 +36,19 @@ const editUser = async (email, id) => {
 }
 
 /**
- * deletes an user
+ * Deletes an user
  * @param {*} id 
  * @returns 
  */
-const deleteUser = (id) => {
-    //deletes user 
-    const user = User.destroy({
+const deleteUser = async (id) => {
+    const user = await User.destroy({
         where: {
             id
         }
     });
-    //validate user was found to be deleted
-    if (!user[0]) {
+    if (!user) {
         throw new Error('User does not exists in database');
     }
-    //returns deleted user
     return user;
 }
 
