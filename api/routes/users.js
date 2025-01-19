@@ -11,7 +11,7 @@ const {
 } = require('../handlers');
 
 router.get('/list', listUserHandler);
-router.get('/find-user/:id', findUserHandler);
+router.get('/details/:id', findUserHandler);
 router.post('/register', registerUserHandler);
 router.put('/edit/:id', editUserHandler);
 router.delete('/delete/:id', deleteUserHandler);

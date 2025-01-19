@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
       const { UserProfile } = models;
       User.hasMany(UserProfile, {
         foreignKey: 'idUser'
@@ -21,8 +20,16 @@ module.exports = (sequelize, DataTypes) => {
       return this.findOne({ where: { email } })
     }
 
-    static findUserByPK(id) {
-      return this.findByPk(id);
+    static async findUserByPK(id) {
+      const user = await this.findOne({
+        attributes: { exclude: ['password'] },
+        where: { id },
+        include: ['UserProfiles'],
+      });
+      if (!user) {
+        throw new Error(`Usuario con el id:${id} no se encontró registrado.`);
+      }
+      return user;
     }
 
     static async edit(id, email) {
@@ -37,7 +44,6 @@ module.exports = (sequelize, DataTypes) => {
       if (!user[0]) {
         throw new Error('User does not exists in database');
       }
-      console.log(user);
       return user;
     }
   }

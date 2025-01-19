@@ -3,6 +3,7 @@ import Main from "../views/Main";
 import Users from "../views/Users/Users";
 import UsersRegister from "../views/Users/UsersRegister";
 import UsersEdit from "../views/Users/UsersEdit";
+import UsersDetails from "../views/Users/UsersDetails";
 import NavigationBar from "./NavigationBar";
 
 const MasterLayOut = ({ view }) => {
@@ -26,6 +27,9 @@ const MasterLayOut = ({ view }) => {
       break;
     case 'Users Edit':
       viewComponent = <UsersEdit />
+      break;
+    case 'Users Details':
+      viewComponent = <UsersDetails />
       break;
     default:
       break;

@@ -11,6 +11,7 @@ function App() {
           <Route path='/usuarios' element={<MasterLayOut view={'Users'} />} />
           <Route path='/usuarios/registrar' element={<MasterLayOut view={'Users Register'} />} />
           <Route path='/usuarios/editar/:id' element={<MasterLayOut view={'Users Edit'} />} />
+          <Route path='/usuarios/detalles/:id' element={<MasterLayOut view={'Users Details'} />} />
         </Routes>
       </Router>
     </div>
