@@ -241,7 +241,9 @@ export default function UsersTable({ users, listUsers }) {
           <div className="relative flex items-end gap-2">
             <Tooltip content="Details">
               <span
-                className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                className="text-lg text-default-400 cursor-pointer active:opacity-50"
+                onClick={() => handleDetails(user.id)}
+              >
                 <EyeIcon />
               </span>
             </Tooltip>
@@ -300,6 +302,11 @@ export default function UsersTable({ users, listUsers }) {
       }
     });
   }
+
+  const handleDetails = (id) => {
+    navigate(`/usuarios/detalles/${id}`);
+  }
+
   return (
     <Table aria-label="Example table with custom cells">
       <TableHeader columns={columns}>
