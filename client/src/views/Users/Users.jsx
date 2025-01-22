@@ -32,6 +32,19 @@ const Users = () => {
     function handleRegisterUser() {
         navigate('/usuarios/registrar');
     }
+
+    const handleChange = (e) => {
+        searchUsers(e.target.value);
+    }
+    const searchUsers = async (string) => {
+        try {
+            const { data } = await axios.post('users/search', { searchString: string });
+            setUsers(data);
+        } catch (error) {
+            handleError('Server error', error);
+        }
+    }
+
     return (
         <div>
             <BreadCum />
@@ -40,15 +53,14 @@ const Users = () => {
             <br />
             <div className="flex justify-end gap-2">
                 <Input
+                    onChange={handleChange}
                     className="w-1/4"
                     size="sm"
                     placeholder="Buscar usuarios.."
                     description="Introduce un nombre de usuario para realizar la busqueda"
                     startContent={
                         <FaSearch />
-
                     }
-                    type="email"
                 />
                 <Button color="success" endContent={<FaUser />} onClick={handleRegisterUser}>
                     Agregar

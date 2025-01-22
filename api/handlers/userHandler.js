@@ -4,7 +4,8 @@ const {
     editUser,
     deleteUser,
     verifyEmail,
-    findUser
+    findUser,
+    searchUsers
 } = require('../controllers');
 
 const { randomPassword } = require('./Utils/users');
@@ -105,6 +106,16 @@ const findUserHandler = async (req, res) => {
     }
 }
 
+const searchUsersHandler = async (req, res) => {
+    const { searchString } = req.body;
+    try {
+        const users = await searchUsers(searchString);
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ message: 'Error searching users', error });
+    }
+}
+
 //exports
 module.exports = {
     listUserHandler,
@@ -112,5 +123,6 @@ module.exports = {
     editUserHandler,
     deleteUserHandler,
     verifyEmailHandler,
-    findUserHandler
+    findUserHandler,
+    searchUsersHandler
 }
