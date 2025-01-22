@@ -6,6 +6,8 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Pagination,
+  getKeyValue,
   User,
   Chip,
   Tooltip,
@@ -209,6 +211,19 @@ const handleError = (message, error) => {
 export default function UsersTable({ users, listUsers }) {
 
   const navigate = useNavigate();
+
+  const [page, setPage] = React.useState(1);
+  const rowsPerPage = 4;
+
+  const pages = Math.ceil(users.length / rowsPerPage);
+
+  const items = React.useMemo(() => {
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+
+    return users.slice(start, end);
+  }, [page, users]);
+
   const renderCell = React.useCallback((user, columnKey) => {
     const cellValue = user[columnKey];
 
@@ -308,7 +323,25 @@ export default function UsersTable({ users, listUsers }) {
   }
 
   return (
-    <Table aria-label="Example table with custom cells">
+    <Table
+      aria-label="Example table with custom cells"
+      bottomContent={
+        <div className="flex w-full justify-center">
+          <Pagination
+            isCompact
+            showControls
+            showShadow
+            color="secondary"
+            page={page}
+            total={pages}
+            onChange={(page) => setPage(page)}
+          />
+        </div>
+      }
+      classNames={{
+        wrapper: "min-h-[222px]",
+      }}
+    >
       <TableHeader columns={columns}>
         {(column) => (
           <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
@@ -316,7 +349,7 @@ export default function UsersTable({ users, listUsers }) {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody items={users}>
+      <TableBody items={items}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => <TableCell className={(columnKey == 'actions') ? "flex items-center" : ""}>{renderCell(item, columnKey)}</TableCell>}
