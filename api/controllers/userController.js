@@ -5,9 +5,7 @@ const { User } = require('../models/index');
  * @returns 
  */
 const listUsers = async () => {
-    // query users 
     const usrs = await User.findAll();
-    // return list of users
     return usrs;
 }
 
@@ -60,6 +58,10 @@ const findUser = (id) => {
     return User.findUserByPK(id);
 }
 
+const searchUsers = (searchString) => {
+    return User.search(searchString);
+}
+
 //exports
 module.exports = {
     listUsers,
@@ -67,5 +69,6 @@ module.exports = {
     editUser,
     deleteUser,
     verifyEmail,
-    findUser
+    findUser,
+    searchUsers
 }

@@ -1,6 +1,7 @@
 'use strict';
 const {
-  Model
+  Model,
+  Op
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -23,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     static async findUserByPK(id) {
       const user = await this.findOne({
         attributes: { exclude: ['password'] },
-        where: { id },
         include: ['UserProfiles'],
+        where: { id },
       });
       if (!user) {
         throw new Error(`Usuario con el id:${id} no se encontró registrado.`);
@@ -46,6 +47,21 @@ module.exports = (sequelize, DataTypes) => {
       }
       return user;
     }
+
+    static async search(string) {
+      return await this.findAll({
+        attributes: { exclude: ['password'] },
+        include: ['UserProfiles'],
+        where: {
+          '$UserProfiles.userName$': {
+            [Op.startsWith]: string, 
+
+          }
+        }
+      });
+
+    }
+
   }
   User.init({
     email: {

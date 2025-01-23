@@ -4,7 +4,8 @@ const {
     editUserHandler,
     deleteUserHandler,
     verifyEmailHandler,
-    findUserHandler
+    findUserHandler,
+    searchUsersHandler
 } = require('./userHandler');
 
 const {
@@ -156,6 +157,7 @@ module.exports = {
     cancelPaymentHandler,
     searchPaymentHandler,
     detailsPaymentHandler,
-    verifyEmailHandler
+    verifyEmailHandler,
+    searchUsersHandler
 }
 

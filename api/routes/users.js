@@ -7,7 +7,8 @@ const {
     registerUserHandler,
     editUserHandler,
     deleteUserHandler,
-    verifyEmailHandler
+    verifyEmailHandler,
+    searchUsersHandler
 } = require('../handlers');
 
 router.get('/list', listUserHandler);
@@ -16,5 +17,6 @@ router.post('/register', registerUserHandler);
 router.put('/edit/:id', editUserHandler);
 router.delete('/delete/:id', deleteUserHandler);
 router.post('/validate-email', verifyEmailHandler);
+router.post('/search', searchUsersHandler);
 
 module.exports = router;
