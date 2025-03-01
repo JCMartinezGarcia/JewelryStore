@@ -1,4 +1,4 @@
-import { Card, CardBody, Image } from "@nextui-org/react";
+import { Card, CardBody, Image } from "@heroui/react";
 const UserDetails = ({ details }) => {
     console.log(details);
     const nullField = '-----------';

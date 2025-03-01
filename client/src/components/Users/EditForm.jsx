@@ -1,4 +1,4 @@
-import { Input, Button, Card, CardBody, Alert } from "@nextui-org/react";
+import { Input, Button, Card, CardBody, Alert } from "@heroui/react";
 import { FaCircleInfo } from "react-icons/fa6";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";

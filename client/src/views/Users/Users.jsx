@@ -1,5 +1,5 @@
 import BreadCum from "../../components/BreadCum";
-import { Input, Button } from "@nextui-org/react";
+import { Input, Button } from "@heroui/react";
 import { FaSearch } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import UsersTable from "../../components/Users/UsersTable";
@@ -57,7 +57,7 @@ const Users = () => {
                     className="w-1/4"
                     size="sm"
                     placeholder="Buscar usuarios.."
-                    description="Introduce un nombre de usuario para realizar la busqueda"
+                    description="Introduce un nombre de usuario o email para realizar la busqueda"
                     startContent={
                         <FaSearch />
                     }
