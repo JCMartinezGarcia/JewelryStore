@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import BreadCum from "../../components/BreadCum";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UserDetails from "../../components/Users/UserDetails";
+import { Button, Tooltip } from "@heroui/react";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
 import axios from "axios";
 
 const UsersDetails = () => {
 
     const params = useParams();
+    const navigate = useNavigate();
     const [details, setDetails] = useState({});
 
     useEffect(() => {
@@ -29,7 +32,20 @@ const UsersDetails = () => {
         <div>
             <BreadCum />
             <br />
-            <h1 className="text-lg"><b>Detalles de Usuario</b></h1>
+            <div className="flex flex-row justify-between">
+                <h1 className="text-lg"><b>Detalles de Usuario</b></h1>
+                <Tooltip content="Regresar">
+                    <Button isIconOnly
+                        className=""
+                        aria-label="Take a photo"
+                        color=""
+                        variant="faded"
+                        onClick={() => navigate('/usuarios')}
+                    >
+                        <FaArrowRightFromBracket />
+                    </Button>
+                </Tooltip>
+            </div>
             <br />
             <UserDetails details={details} />
         </div>

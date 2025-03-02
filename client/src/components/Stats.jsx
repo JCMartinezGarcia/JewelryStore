@@ -1,4 +1,4 @@
-import { Card, CardBody } from "@nextui-org/react";
+import { Card, CardBody } from "@heroui/react";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 const Stats = () => {

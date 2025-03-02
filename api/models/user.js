@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       const { UserProfile } = models;
       User.hasMany(UserProfile, {
-        foreignKey: 'idUser'
+        foreignKey: 'idUser',
+        onDelete: 'CASCADE',
+        hooks: true,
       });
     }
 
@@ -54,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
         include: ['UserProfiles'],
         where: {
           '$UserProfiles.userName$': {
-            [Op.startsWith]: string, 
+            [Op.startsWith]: string,
 
           }
         }

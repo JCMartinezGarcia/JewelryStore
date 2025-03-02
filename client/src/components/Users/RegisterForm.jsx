@@ -1,4 +1,4 @@
-import { Input, Button, Card, CardBody, Alert } from "@nextui-org/react";
+import { Input, Button, Card, CardBody, Alert } from "@heroui/react";
 import { FaCircleInfo } from "react-icons/fa6";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -51,7 +51,7 @@ const RegisterForm = () => {
             if (status === 201) {
                 Swal.fire({
                     title: '¡Registro Exitoso!',
-                    html: `Usuario: <b>${data.email}</b> registrado con éxito.`,
+                    html: `Usuario registrado con éxito.`,
                     icon: 'success',
                     allowOutsideClick: false
                 }).then((result) => {

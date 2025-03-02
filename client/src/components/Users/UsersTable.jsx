@@ -11,7 +11,7 @@ import {
   User,
   Chip,
   Tooltip,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import axios from "axios";

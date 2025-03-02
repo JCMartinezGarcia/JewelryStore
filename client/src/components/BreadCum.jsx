@@ -1,4 +1,4 @@
-import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
+import { Breadcrumbs, BreadcrumbItem } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 const BreadCum = () => {
