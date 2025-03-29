@@ -1,6 +1,5 @@
 import { Card, CardBody, Image } from "@heroui/react";
 const UserDetails = ({ details }) => {
-    console.log(details);
     const nullField = '-----------';
     const profileImage = (details.UserProfiles?.image) ? details.UserProfiles?.image : "https://nextui.org/images/album-cover.png";
     return (
