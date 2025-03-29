@@ -13,6 +13,7 @@ const EditForm = ({ user, userId }) => {
             email: user || ""
         }
     });
+
     const navigate = useNavigate();
     const [inputValue, setInputValue] = React.useState(getValues("email"));
     const [emailAvailable, setEmailAvailable] = useState(false);
@@ -95,6 +96,7 @@ const EditForm = ({ user, userId }) => {
                             label="Email"
                             type="email"
                             value={inputValue}
+                            // defaultValues={getValues('email')}
                             variant={isInvalid ? "bordered" : ""}
                             onValueChange={setInputValue}
                         />

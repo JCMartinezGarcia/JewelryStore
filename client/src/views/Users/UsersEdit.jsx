@@ -3,6 +3,7 @@ import BreadCum from "../../components/BreadCum";
 import EditForm from "../../components/Users/EditForm";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+
 const UsersEdit = () => {
     const params = useParams();
     const [user, setUser] = useState();
@@ -20,7 +21,7 @@ const UsersEdit = () => {
 
     const getUser = async (id) => {
         try {
-            const user = await axios.get(`users/find-user/${id}`);
+            const user = await axios.get(`users/details/${id}`);
             const { email } = user.data;
             setUser(email);
         } catch (error) {

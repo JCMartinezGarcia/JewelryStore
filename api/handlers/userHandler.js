@@ -107,6 +107,7 @@ const findUserHandler = async (req, res) => {
 }
 
 const searchUsersHandler = async (req, res) => {
+    
     const { searchString } = req.body;
     try {
         const users = await searchUsers(searchString);

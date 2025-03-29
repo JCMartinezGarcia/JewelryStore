@@ -9,7 +9,6 @@ import {
   Pagination,
   getKeyValue,
   User,
-  Chip,
   Tooltip,
 } from "@heroui/react";
 import { useNavigate } from "react-router-dom";
@@ -17,64 +16,11 @@ import Swal from 'sweetalert2';
 import axios from "axios";
 
 export const columns = [
-  { name: "USUARIO", uid: "name" },
-  // { name: "ROLE", uid: "role" },
-  // { name: "STATUS", uid: "status" },
+  { name: "USUARIO", uid: "user" },
+  { name: "EMAIL", uid: "email" },
   { name: "ACTIONS", uid: "actions" },
 ];
 
-// export const users = [
-//   {
-//     id: 1,
-//     name: "Tony Reichert",
-//     role: "CEO",
-//     team: "Management",
-//     status: "active",
-//     age: "29",
-//     avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-//     email: "tony.reichert@example.com",
-//   },
-//   {
-//     id: 2,
-//     name: "Zoey Lang",
-//     role: "Technical Lead",
-//     team: "Development",
-//     status: "paused",
-//     age: "25",
-//     avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-//     email: "zoey.lang@example.com",
-//   },
-//   {
-//     id: 3,
-//     name: "Jane Fisher",
-//     role: "Senior Developer",
-//     team: "Development",
-//     status: "active",
-//     age: "22",
-//     avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-//     email: "jane.fisher@example.com",
-//   },
-//   {
-//     id: 4,
-//     name: "William Howard",
-//     role: "Community Manager",
-//     team: "Marketing",
-//     status: "vacation",
-//     age: "28",
-//     avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-//     email: "william.howard@example.com",
-//   },
-//   {
-//     id: 5,
-//     name: "Kristen Copper",
-//     role: "Sales Manager",
-//     team: "Sales",
-//     status: "active",
-//     age: "24",
-//     avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-//     email: "kristen.cooper@example.com",
-//   },
-// ];
 
 export const EyeIcon = (props) => {
   return (
@@ -211,7 +157,7 @@ const handleError = (message, error) => {
 export default function UsersTable({ users, listUsers }) {
 
   const navigate = useNavigate();
-
+  const nullValue = '---------';
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 4;
 
@@ -228,7 +174,7 @@ export default function UsersTable({ users, listUsers }) {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
-      case "name":
+      case "email":
         return (
           <User
             avatarProps={{ radius: "lg", src: user.avatar }}
@@ -238,13 +184,12 @@ export default function UsersTable({ users, listUsers }) {
             {user.email}
           </User>
         );
-      // case "role":
-      //   return (
-      //     <div className="flex flex-col">
-      //       <p className="text-bold text-sm capitalize">{cellValue}</p>
-      //       <p className="text-bold text-sm capitalize text-default-400">{user.team}</p>
-      //     </div>
-      //   );
+      case "user":
+        return (
+          <div className="flex flex-col">
+            <p className="text-bold text-sm capitalize">{(user.usuario) ? user.usuario : nullValue}</p>
+          </div>
+        );
       // case "status":
       //   return (
       //     <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
