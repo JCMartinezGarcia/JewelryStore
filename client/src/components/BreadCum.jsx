@@ -14,15 +14,15 @@ const BreadCum = () => {
     }
 
     function capitalizeFirstWord(word) {
-        if (!word) return ''; // Handle empty strings
+        if (!word) return; // Handle empty strings
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     }
-    
+
     return (
         <div>
             <Breadcrumbs size={'lg'}>
                 {items?.map((item) => (
-                    (item != "") ? <BreadcrumbItem>{capitalizeFirstWord(item)}</BreadcrumbItem> : null
+                    (item != "" && isNaN(Number(item))) ? <BreadcrumbItem>{capitalizeFirstWord(item)}</BreadcrumbItem> : null
                 ))}
             </Breadcrumbs>
         </div>
