@@ -11,7 +11,8 @@ const MasterLayOut = ({ view }) => {
   const [screen, setScreen] = useState(false);
 
   useEffect(() => {
-    if (view === 'Users Register' || view === 'Users Edit') { setScreen(true); }
+    setScreen(false);
+    if (view != 'Users') { setScreen(true); }
   }, [view]);
 
   let viewComponent;
