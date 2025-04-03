@@ -1,5 +1,5 @@
 const {
-    listUserHandler,
+    listUsersHandler,
     registerUserHandler,
     editUserHandler,
     deleteUserHandler,
@@ -96,7 +96,7 @@ const {
 
 
 module.exports = {
-    listUserHandler,
+    listUsersHandler,
     findUserHandler,
     registerUserHandler,
     editUserHandler,

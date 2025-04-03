@@ -1,13 +1,9 @@
 const { User, sequelize } = require('../models/index');
 
 /**
- * gets all users
- * @returns 
+ * Fetches all users from the database
  */
-const listUsers = async () => {
-    const usrs = await User.findAll();
-    return usrs;
-}
+const listUsers = async () => User.list();
 
 /**
  * Register a new user in DB

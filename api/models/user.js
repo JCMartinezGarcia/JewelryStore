@@ -25,6 +25,26 @@ module.exports = (sequelize, DataTypes) => {
       return this.findOne({ where: { email } })
     }
 
+    /**
+  * Fetch all users with their profile names
+  */
+    static async list() {
+      const query = `
+          SELECT 
+              usr.id, 
+              usr.email, 
+              pfl.userName AS usuario
+          FROM users AS usr
+          INNER JOIN userprofiles AS pfl ON usr.id = pfl.idUser
+      `;
+
+      return await sequelize.query(query, {
+        logging: false, // Remove logging in production for security reasons
+        raw: true,
+        type: QueryTypes.SELECT,
+      });
+    }
+
     static async findUserByPK(id) {
       const user = await this.findOne({
         attributes: { exclude: ['password'] },
@@ -61,7 +81,6 @@ module.exports = (sequelize, DataTypes) => {
         'FROM users as usr ' +
         'INNER JOIN userprofiles as pfl ON usr.id = pfl.idUser ' +
         'WHERE usr.email LIKE :search_param OR pfl.userName LIKE :search_param';
-      console.log(query);
       const users = await sequelize.query(query, {
         replacements: { search_param: string + '%' },
         // A function (or false) for logging your queries
@@ -79,7 +98,6 @@ module.exports = (sequelize, DataTypes) => {
         // The type of query you are executing. The query type affects how results are formatted before they are passed back.
         type: QueryTypes.SELECT,
       });
-      console.log(users);
       return users;
     }
 

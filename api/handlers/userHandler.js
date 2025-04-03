@@ -13,19 +13,14 @@ const { randomPassword } = require('./Utils/users');
 const bcrypt = require('bcrypt');
 
 /**
- * handle login to return list of all users
- * @param {*} req 
- * @param {*} res 
+ * Handles retrieving the list of all users
  */
-const listUserHandler = async (req, res) => {
+const listUsersHandler = async (req, res) => {
     try {
-        //call list users controller function
         const users = await listUsers();
-        //return response
         res.status(200).json(users);
     } catch (error) {
-        //handle errors
-        console.log('Error listing users:', error.message);
+        console.error('Error listing users:', error.message);
         res.status(500).json({ message: 'Error listing users', error: error.message });
     }
 }
@@ -107,7 +102,7 @@ const findUserHandler = async (req, res) => {
 }
 
 const searchUsersHandler = async (req, res) => {
-    
+
     const { searchString } = req.body;
     try {
         const users = await searchUsers(searchString);
@@ -119,7 +114,7 @@ const searchUsersHandler = async (req, res) => {
 
 //exports
 module.exports = {
-    listUserHandler,
+    listUsersHandler,
     registerUserHandler,
     editUserHandler,
     deleteUserHandler,

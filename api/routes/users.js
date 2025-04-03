@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const {
-    listUserHandler,
+    listUsersHandler,
     findUserHandler,
     registerUserHandler,
     editUserHandler,
@@ -11,7 +11,7 @@ const {
     searchUsersHandler
 } = require('../handlers');
 
-router.get('/list', listUserHandler);
+router.get('/list', listUsersHandler);
 router.get('/details/:id', findUserHandler);
 router.post('/register', registerUserHandler);
 router.put('/edit/:id', editUserHandler);
