@@ -4,7 +4,7 @@ const {
     updateUser,
     deleteUser,
     verifyEmail,
-    findUser,
+    getUserById,
     searchUsers
 } = require('../controllers');
 
@@ -88,14 +88,17 @@ const verifyEmailHandler = async (req, res) => {
     }
 }
 
-
-const findUserHandler = async (req, res) => {
+/**
+ * Handles user details retrieval
+ */
+const getUserByIdHandler = async (req, res) => {
     const { id } = req.params;
     try {
-        const user = await findUser(id);
-        res.status(200).json(user);
+        const userDetails = await getUserById(id);
+        res.status(200).json(userDetails);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        console.error('Error fetching user:', error.message);
+        res.status(500).json({ message: 'Error finding user', error });
     }
 }
 
@@ -117,6 +120,6 @@ module.exports = {
     updateUserHandler,
     deleteUserHandler,
     verifyEmailHandler,
-    findUserHandler,
+    getUserByIdHandler,
     searchUsersHandler
 }

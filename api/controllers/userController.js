@@ -36,9 +36,13 @@ const verifyEmail = (email) => {
     return User.isEmailRegistered(email);
 }
 
-const findUser = (id) => {
-    return User.findUserByPK(id);
-}
+
+/**
+ * Fetches user by ID
+ */
+const getUserById = async (id) => {
+    return await User.getUserByPK(id);
+};
 
 const searchUsers = (searchString) => {
     return User.search(searchString);
@@ -51,6 +55,6 @@ module.exports = {
     updateUser,
     deleteUser,
     verifyEmail,
-    findUser,
+    getUserById,
     searchUsers
 }

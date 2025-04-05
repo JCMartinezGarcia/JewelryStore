@@ -3,7 +3,7 @@ var router = express.Router();
 
 const {
     listUsersHandler,
-    findUserHandler,
+    getUserByIdHandler,
     registerUserHandler,
     updateUserHandler,
     deleteUserHandler,
@@ -12,7 +12,7 @@ const {
 } = require('../handlers');
 
 router.get('/list', listUsersHandler);
-router.get('/details/:id', findUserHandler);
+router.get('/details/:id', getUserByIdHandler);
 router.post('/register', registerUserHandler);
 router.put('/edit/:id', updateUserHandler);
 router.delete('/delete/:id', deleteUserHandler);

@@ -4,7 +4,7 @@ const {
     updateUser,
     deleteUser,
     verifyEmail,
-    findUser,
+    getUserById,
     searchUsers
 } = require('./userController');
 
@@ -156,6 +156,6 @@ module.exports = {
     searchPayments,
     getPaymentByPk,
     verifyEmail,
-    findUser,
+    getUserById,
     searchUsers
 }

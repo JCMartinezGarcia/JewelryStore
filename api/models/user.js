@@ -44,17 +44,19 @@ module.exports = (sequelize, DataTypes) => {
         type: QueryTypes.SELECT,
       });
     }
-
-    static async findUserByPK(id) {
+    static async getUserByPK(id) {
       const user = await this.findOne({
         attributes: { exclude: ['password'] },
         include: ['UserProfiles'],
         where: { id },
       });
+
       if (!user) {
-        throw new Error(`Usuario con el id:${id} no se encontró registrado.`);
+        throw new Error(`User with ID ${id} not found`);
       }
-      return user;
+
+      // Optional: return plain JSON without Sequelize metadata
+      return user.get({ plain: true });
     }
 
     static async updateById(id, email) {
