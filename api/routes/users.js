@@ -5,7 +5,7 @@ const {
     listUsersHandler,
     findUserHandler,
     registerUserHandler,
-    editUserHandler,
+    updateUserHandler,
     deleteUserHandler,
     verifyEmailHandler,
     searchUsersHandler
@@ -14,7 +14,7 @@ const {
 router.get('/list', listUsersHandler);
 router.get('/details/:id', findUserHandler);
 router.post('/register', registerUserHandler);
-router.put('/edit/:id', editUserHandler);
+router.put('/edit/:id', updateUserHandler);
 router.delete('/delete/:id', deleteUserHandler);
 router.post('/validate-email', verifyEmailHandler);
 router.post('/search', searchUsersHandler);

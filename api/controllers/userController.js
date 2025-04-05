@@ -19,14 +19,10 @@ const registerUser = async (email, password) => {
 }
 
 /**
- * Edits an user 
- * @param {*} email 
- * @param {*} password 
- * @param {*} id 
- * @returns 
+ * Updates user by ID
  */
-const editUser = async (email, id) => {
-    return User.edit(id, email);
+const updateUser = (email, id) => {
+    return User.updateById(id, email);
 }
 
 /**
@@ -73,7 +69,7 @@ const searchUsers = (searchString) => {
 module.exports = {
     listUsers,
     registerUser,
-    editUser,
+    updateUser,
     deleteUser,
     verifyEmail,
     findUser,

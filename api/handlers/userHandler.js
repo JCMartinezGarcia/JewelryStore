@@ -1,7 +1,7 @@
 const {
     listUsers,
     registerUser,
-    editUser,
+    updateUser,
     deleteUser,
     verifyEmail,
     findUser,
@@ -46,19 +46,18 @@ const registerUserHandler = async (req, res) => {
 }
 
 /**
- * handle logic to edit an user 
- * @param {*} req 
- * @param {*} res 
+ * Handles user update
  */
-const editUserHandler = async (req, res) => {
+const updateUserHandler = async (req, res) => {
     try {
         const { email } = req.body;
         const { id } = req.params;
-        const user = await editUser(email, id);
-        res.status(202).json(user);
+
+        const updated = await updateUser(email, id);
+        res.status(202).json(updated);
     } catch (error) {
-        console.log('Error editing user:', error.message);
-        res.status(500).json({ message: 'Error editing user', error: error.message });
+        console.log('Error updating user:', error.message);
+        res.status(500).json({ message: 'Error updating user', error: error.message });
     }
 }
 
@@ -116,7 +115,7 @@ const searchUsersHandler = async (req, res) => {
 module.exports = {
     listUsersHandler,
     registerUserHandler,
-    editUserHandler,
+    updateUserHandler,
     deleteUserHandler,
     verifyEmailHandler,
     findUserHandler,
