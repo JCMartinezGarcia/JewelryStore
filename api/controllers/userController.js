@@ -26,32 +26,11 @@ const updateUser = (email, id) => {
 }
 
 /**
- * Deletes an user
- * @param {*} id 
- * @returns 
+ * Deletes an user and their profile by ID
  */
 const deleteUser = async (id) => {
-    const transaction = await sequelize.transaction();
-
-    try {
-
-        const user = await User.findOne({
-            where: { id },
-            include: ['UserProfiles'],
-            transaction,
-        });
-        if (!user) {
-            throw new Error('User does not exists in database');
-        }
-        await user.destroy({ transaction });
-        await transaction.commit();
-        return user;
-
-    } catch (error) {
-        await transaction.rollback();
-        throw error; // Propaga el error para manejarlo externamente
-    }
-}
+    return await User.deleteById(id);
+};
 
 const verifyEmail = (email) => {
     return User.isEmailRegistered(email);
