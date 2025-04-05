@@ -102,6 +102,9 @@ const getUserByIdHandler = async (req, res) => {
     }
 }
 
+/**
+ * Handle search for users
+ */
 const searchUsersHandler = async (req, res) => {
 
     const { searchString } = req.body;
@@ -109,7 +112,8 @@ const searchUsersHandler = async (req, res) => {
         const users = await searchUsers(searchString);
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json({ message: 'Error searching users', error });
+        console.error('Error searching for users', error.message);
+        res.status(500).json({ message: 'Error searching users', error: error.message });
     }
 }
 

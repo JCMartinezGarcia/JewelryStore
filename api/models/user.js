@@ -104,37 +104,30 @@ module.exports = (sequelize, DataTypes) => {
         throw error;
       }
     }
+    static async search(searchTerm) {
+      const query = `
+          SELECT 
+              usr.id, 
+              usr.email, 
+              pfl.userName AS usuario 
+          FROM users AS usr
+          INNER JOIN userprofiles AS pfl ON usr.id = pfl.idUser 
+          WHERE usr.email LIKE :search_param 
+             OR pfl.userName LIKE :search_param
+      `;
 
-    static async search(string) {
-
-      const query = 'SELECT ' +
-        'usr.id, ' +
-        'usr.email, ' +
-        'pfl.userName as usuario ' +
-        'FROM users as usr ' +
-        'INNER JOIN userprofiles as pfl ON usr.id = pfl.idUser ' +
-        'WHERE usr.email LIKE :search_param OR pfl.userName LIKE :search_param';
       const users = await sequelize.query(query, {
-        replacements: { search_param: string + '%' },
-        // A function (or false) for logging your queries
-        // Will get called for every SQL query that gets sent
-        // to the server.
-        logging: console.log,
-
-        // If plain is true, then sequelize will only return the first
-        // record of the result set. In case of false it will return all records.
-        plain: false,
-
-        // Set this to true if you don't have a model definition for your query.
+        replacements: { search_param: `${searchTerm}%` },
+        logging: false,
         raw: true,
-
-        // The type of query you are executing. The query type affects how results are formatted before they are passed back.
         type: QueryTypes.SELECT,
       });
+
       return users;
     }
 
   }
+
   User.init({
     email: {
       type: DataTypes.STRING(50),
