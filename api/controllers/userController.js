@@ -44,9 +44,13 @@ const getUserById = async (id) => {
     return await User.getUserByPK(id);
 };
 
-const searchUsers = (searchString) => {
-    return User.search(searchString);
-}
+
+/**
+ * Searches users by email or username
+ */
+const searchUsers = async (searchString) => {
+    return await User.search(searchString);
+};
 
 //exports
 module.exports = {
