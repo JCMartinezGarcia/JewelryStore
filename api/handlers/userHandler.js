@@ -56,23 +56,22 @@ const updateUserHandler = async (req, res) => {
         const updated = await updateUser(email, id);
         res.status(202).json(updated);
     } catch (error) {
-        console.log('Error updating user:', error.message);
+        console.error('Error updating user:', error.message);
         res.status(500).json({ message: 'Error updating user', error: error.message });
     }
 }
 
 /**
- * Handles login to delete an user
- * @param {*} req 
- * @param {*} res 
+ * Handles user delete
  */
 const deleteUserHandler = async (req, res) => {
     try {
         const { id } = req.params;
-        const user = await deleteUser(id);
-        res.status(200).json(user);
+        const deletedUser = await deleteUser(id);
+
+        res.status(200).json(deletedUser);
     } catch (error) {
-        console.log('Error deleting user:', error.message);
+        console.error('Error deleting user:', error.message);
         res.status(500).json({ message: 'Error deleting user', error: error.message });
     }
 }

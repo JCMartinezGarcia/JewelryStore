@@ -72,6 +72,37 @@ module.exports = (sequelize, DataTypes) => {
       return { message: 'User updated successfully', userId: id };
     }
 
+
+    static async deleteById(id) {
+      const transaction = await sequelize.transaction();
+
+      try {
+        const user = await this.findOne({
+          where: { id },
+          include: ['UserProfiles'],
+          transaction,
+        });
+
+        if (!user) {
+          throw new Error('User not found');
+        }
+
+        const userData = {
+          id: user.id,
+          email: user.email,
+          userName: user.UserProfiles?.userName || null,
+        };
+
+        await user.destroy({ transaction });
+        await transaction.commit();
+
+        return userData;
+      } catch (error) {
+        await transaction.rollback();
+        throw error;
+      }
+    }
+
     static async search(string) {
 
       const query = 'SELECT ' +
