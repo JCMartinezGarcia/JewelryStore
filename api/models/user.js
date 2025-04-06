@@ -57,8 +57,8 @@ module.exports = (sequelize, DataTypes) => {
       return user;
     }
 
-    static async edit(id, email) {
-      const user = await this.update(
+    static async updateById(id, email) {
+      const [updatedCount] = await this.update(
         { email },
         {
           where: {
@@ -66,10 +66,10 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       );
-      if (!user[0]) {
-        throw new Error('User does not exists in database');
+      if (updatedCount === 0) {
+        throw new Error('User not found');
       }
-      return user;
+      return { message: 'User updated successfully', userId: id };
     }
 
     static async search(string) {

@@ -1,7 +1,7 @@
 const {
     listUsersHandler,
     registerUserHandler,
-    editUserHandler,
+    updateUserHandler,
     deleteUserHandler,
     verifyEmailHandler,
     findUserHandler,
@@ -99,7 +99,7 @@ module.exports = {
     listUsersHandler,
     findUserHandler,
     registerUserHandler,
-    editUserHandler,
+    updateUserHandler,
     deleteUserHandler,
     getUserProfileHandler,
     registerUserProfileHandler,

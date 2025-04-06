@@ -1,7 +1,7 @@
 const {
     listUsers,
     registerUser,
-    editUser,
+    updateUser,
     deleteUser,
     verifyEmail,
     findUser,
@@ -97,7 +97,7 @@ const {
 module.exports = {
     listUsers,
     registerUser,
-    editUser,
+    updateUser,
     deleteUser,
     getUserProfile,
     registerUserProfile,
