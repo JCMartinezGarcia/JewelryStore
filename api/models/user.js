@@ -21,6 +21,34 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
+    /**
+    * Registers a user and creates their profile
+    */
+    static async register(email, password) {
+      const transaction = await sequelize.transaction();
+
+      try {
+        // Create the user
+        const user = await this.create({ email, password }, { transaction });
+
+        // Create the associated profile
+        await user.createUserProfile({ idUser: user.id }, { transaction });
+
+        await transaction.commit();
+
+        return {
+          id: user.id,
+          email: user.email,
+        };
+      } catch (error) {
+        await transaction.rollback();
+        throw new Error(`Error registering user: ${error.message}`);
+      }
+    }
+
+    /**
+     * Checks if the email was registered already
+     */
     static async isEmailRegistered(email) {
       return this.findOne({ where: { email } })
     }

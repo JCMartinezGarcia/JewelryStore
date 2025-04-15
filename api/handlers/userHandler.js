@@ -8,7 +8,7 @@ const {
     searchUsers
 } = require('../controllers');
 
-const { randomPassword } = require('./Utils/users');
+const { generateRandomPassword } = require('./Utils/users');
 
 const bcrypt = require('bcrypt');
 
@@ -26,21 +26,25 @@ const listUsersHandler = async (req, res) => {
 }
 
 /**
- * handle logic to register an user
- * @param {*} req 
- * @param {*} res 
+ * handle users registration
  */
 const registerUserHandler = async (req, res) => {
     const saltRounds = 10;
     try {
         const { email } = req.body;
-        const password = randomPassword(4);
+        //Generate random password and hash it
+        const password = generateRandomPassword(4);
         const hashedPass = await bcrypt.hash(password, saltRounds);
+        //Register user
         const user = await registerUser(email, hashedPass);
-        res.status(201).json(user);
+
+        res.status(201).json({
+            message: 'User registered successfully',
+            user,
+        });
+
     } catch (error) {
-        //handle errors
-        console.log('Error registering user:', error.message);
+        console.error('Error registering user:', error.message);
         res.status(500).json({ message: 'Error registering user', error: error.message });
     }
 }
