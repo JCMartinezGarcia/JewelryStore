@@ -6,16 +6,11 @@ const { User, sequelize } = require('../models/index');
 const listUsers = async () => User.list();
 
 /**
- * Register a new user in DB
- * @param {*} email 
- * @param {*} password 
- * @returns 
+ * Registers a new user
  */
+
 const registerUser = async (email, password) => {
-    const usr = await User.create({ email: email, password: password });
-    //create user profile
-    usr.createUserProfile({ idUser: usr.id });
-    return usr;
+    return await User.register(email, password);
 }
 
 /**
