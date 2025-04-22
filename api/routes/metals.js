@@ -15,7 +15,7 @@ const {
 router.get('/list', listMetalsHandler);
 router.post('/register', registerMetalHandler);
 router.put('/edit/:id', editMetalHandler);
-router.get('/find/:id', getMetalHandler);
+router.get('/get/:id', getMetalHandler);
 router.delete('/delete/:id', deleteMetalHandler);
 router.post('/search', searchMetalHandler);
 

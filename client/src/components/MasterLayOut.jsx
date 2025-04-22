@@ -4,6 +4,9 @@ import Users from "../views/Users/Users";
 import UsersRegister from "../views/Users/UsersRegister";
 import UsersEdit from "../views/Users/UsersEdit";
 import UsersDetails from "../views/Users/UsersDetails";
+import MetalsList from "../views/Metals/MetalsList";
+import MetalsRegister from "../views/Metals/MetalsRegister";
+import MetalsUpdate from "../views/Metals/MetalsUpdate";
 import NavigationBar from "./NavigationBar";
 
 const MasterLayOut = ({ view }) => {
@@ -32,6 +35,15 @@ const MasterLayOut = ({ view }) => {
     case 'Users Details':
       viewComponent = <UsersDetails />
       break;
+    case 'Metals':
+      viewComponent = <MetalsList />
+      break;
+    case 'Metals Register':
+      viewComponent = <MetalsRegister />
+      break;
+    case 'Metals Update':
+      viewComponent = <MetalsUpdate />
+      break;
     default:
       break;
   }
@@ -45,7 +57,8 @@ const MasterLayOut = ({ view }) => {
         <div className="p-4 text-lg font-bold border-b border-gray-700">Admin Panel</div>
         <nav className="flex flex-col p-4 space-y-4">
           <a href="/" className="hover:bg-gray-700 p-2 rounded">Dashboard</a>
-          <a href="/usuarios" className="hover:bg-gray-700 p-2 rounded">Users</a>
+          <a href="/usuarios" className="hover:bg-gray-700 p-2 rounded">Usuarios</a>
+          <a href="/metales" className="hover:bg-gray-700 p-2 rounded">Metales</a>
           <a href="#" className="hover:bg-gray-700 p-2 rounded">Settings</a>
           <a href="#" className="hover:bg-gray-700 p-2 rounded">Logout</a>
         </nav>
