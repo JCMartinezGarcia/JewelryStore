@@ -47,7 +47,7 @@ const RegisterForm = () => {
         if (isRegistering) return;
         setIsRegistering(true);
         try {
-            const { data, status } = await axios.post('users/register', { email }, { timeout: 5000 });
+            const { status } = await axios.post('users/register', { email }, { timeout: 5000 });
             if (status === 201) {
                 Swal.fire({
                     title: '¡Registro Exitoso!',
