@@ -29,6 +29,7 @@ const Users = () => {
             handleError('Error listing users', error);
         }
     }
+    
     function handleRegisterUser() {
         navigate('/usuarios/registrar');
     }
