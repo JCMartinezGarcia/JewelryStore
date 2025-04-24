@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import BreadCum from "../../components/BreadCum";
 import { Button } from "@heroui/react";
-import axios from 'axios';
 import MetalsTable from "../../components/Metals/MetalsTable";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const MetalsList = () => {
 
@@ -11,6 +12,7 @@ const MetalsList = () => {
     }, []);
 
     const [metales, setMetales] = useState([]);
+    const navigate = useNavigate();
 
     const handleError = (message, error) => {
         console.error(`${message}:`, error.message);
@@ -24,13 +26,15 @@ const MetalsList = () => {
             handleError('Error listing users', error);
         }
     }
+
+
     return (
         <div>
             <BreadCum />
             <br />
             <div className="flex justify-between">
                 <h1><strong>Listado de Metales</strong></h1>
-                <Button className="" color="success" endContent={''}>
+                <Button className="" color="success" endContent={''} onPress={() => { navigate('/metales/registrar') }}>
                     Registrar
                 </Button >
             </div>
