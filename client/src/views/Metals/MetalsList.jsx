@@ -8,7 +8,7 @@ import axios from 'axios';
 const MetalsList = () => {
 
     useEffect(() => {
-        getMetalsList();
+        fetchMetals();
     }, []);
 
     const [metales, setMetales] = useState([]);
@@ -18,12 +18,12 @@ const MetalsList = () => {
         console.error(`${message}:`, error.message);
     }
 
-    const getMetalsList = async () => {
+    const fetchMetals = async () => {
         try {
             const metales = await axios.get('metals/list');
             setMetales(metales.data);
         } catch (error) {
-            handleError('Error listing users', error);
+            handleError('Error fectching metals', error);
         }
     }
 
@@ -39,7 +39,7 @@ const MetalsList = () => {
                 </Button >
             </div>
             <br />
-            <MetalsTable metales={metales} />
+            <MetalsTable metales={metales} fetchMetals={fetchMetals} />
         </div>
     );
 

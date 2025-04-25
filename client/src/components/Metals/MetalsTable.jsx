@@ -149,7 +149,8 @@ const handleError = (message, error) => {
     console.error(`${message}:`, error?.message || error);
 };
 
-export default function MetalsTable({ metales }) {
+export default function MetalsTable({ metales, fetchMetals }) {
+
 
     const navigate = useNavigate();
     const [page, setPage] = React.useState(1);
@@ -198,7 +199,7 @@ export default function MetalsTable({ metales }) {
                         <Tooltip color="danger" content="Eliminar">
                             <span
                                 className="text-lg text-danger cursor-pointer active:opacity-50"
-                                onClick={() => handleDelete(metal.id)}
+                                onClick={() => handleDeleteMetal(metal.id)}
                             >
                                 <DeleteIcon />
                             </span>
@@ -212,30 +213,30 @@ export default function MetalsTable({ metales }) {
 
     const deleteMetal = async (id) => {
         try {
-            const result = await axios.delete(`users/delete/${id}`);
+            const result = await axios.delete(`metals/delete/${id}`);
             if (result.data) return result.data;
         } catch (error) {
             handleError('Error deleting metal', error);
         }
     }
 
-    const handleDelete = (id, email) => {
+    const handleDeleteMetal = (id) => {
         Swal.fire({
-            title: '¿Seguro quieres eliminar el usuario?',
-            html: `El usuario <b>${email}</b> será eliminado del sistema.`,
+            title: '¿Seguro quieres eliminar el registro?',
             icon: 'warning',
             showCancelButton: true,
-            allowOutsideClick: false
+            allowOutsideClick: false,
+            confirmButtonText: 'Eliminar'
         }).then(async (result) => {
             if (result.isConfirmed) {
                 if (await deleteMetal(id)) {
                     Swal.fire({
-                        title: '¡Usuario eliminado con exito!',
+                        title: '¡Registro eliminado con exito!',
                         icon: 'success',
                         allowOutsideClick: false
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // listUsers();
+                            fetchMetals();
                         }
                     });
                 }
