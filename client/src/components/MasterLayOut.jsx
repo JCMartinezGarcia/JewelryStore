@@ -7,6 +7,7 @@ import UsersDetails from "../views/Users/UsersDetails";
 import MetalsList from "../views/Metals/MetalsList";
 import MetalsRegister from "../views/Metals/MetalsRegister";
 import MetalsUpdate from "../views/Metals/MetalsUpdate";
+import ProductLines from "../views/Lines/ProductLines";
 import NavigationBar from "./NavigationBar";
 
 const MasterLayOut = ({ view }) => {
@@ -44,6 +45,9 @@ const MasterLayOut = ({ view }) => {
     case 'Metals Update':
       viewComponent = <MetalsUpdate />
       break;
+    case 'Product Lines':
+      viewComponent = <ProductLines />
+      break;
     default:
       break;
   }
@@ -59,6 +63,7 @@ const MasterLayOut = ({ view }) => {
           <a href="/" className="hover:bg-gray-700 p-2 rounded">Dashboard</a>
           <a href="/usuarios" className="hover:bg-gray-700 p-2 rounded">Usuarios</a>
           <a href="/metales" className="hover:bg-gray-700 p-2 rounded">Metales</a>
+          <a href="/Lineas" className="hover:bg-gray-700 p-2 rounded">Lineas de producto</a>
           <a href="#" className="hover:bg-gray-700 p-2 rounded">Settings</a>
           <a href="#" className="hover:bg-gray-700 p-2 rounded">Logout</a>
         </nav>
