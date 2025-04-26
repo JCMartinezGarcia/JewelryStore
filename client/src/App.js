@@ -15,6 +15,7 @@ function App() {
           <Route path='/metales' element={<MasterLayOut view={'Metals'} />} />
           <Route path='/metales/registrar' element={<MasterLayOut view={'Metals Register'} />} />
           <Route path='/metales/editar/:id' element={<MasterLayOut view={'Metals Update'} />} />
+          <Route path='/Lineas' element={<MasterLayOut view={'Product Lines'} />} />
         </Routes>
       </Router>
     </div>
