@@ -196,7 +196,7 @@ export default function LinesTable({ lines, fetchLines }) {
                         <Tooltip color="danger" content="Eliminar">
                             <span
                                 className="text-lg text-danger cursor-pointer active:opacity-50"
-                                onClick={() => handleDeleteMetal(line.id)}
+                                onClick={() => handleDeleteLine(line.id)}
                             >
                                 <DeleteIcon />
                             </span>
@@ -208,16 +208,16 @@ export default function LinesTable({ lines, fetchLines }) {
         }
     }, []);
 
-    const deleteMetal = async (id) => {
+    const deleteLine = async (id) => {
         try {
-            const result = await axios.delete(`metals/delete/${id}`);
+            const result = await axios.delete(`products/lines/delete/${id}`);
             if (result.data) return result.data;
         } catch (error) {
             handleError('Error deleting metal', error);
         }
     }
 
-    const handleDeleteMetal = (id) => {
+    const handleDeleteLine = (id) => {
         Swal.fire({
             title: '¿Seguro quieres eliminar el registro?',
             icon: 'warning',
@@ -226,7 +226,7 @@ export default function LinesTable({ lines, fetchLines }) {
             confirmButtonText: 'Eliminar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                if (await deleteMetal(id)) {
+                if (await deleteLine(id)) {
                     Swal.fire({
                         title: '¡Registro eliminado con exito!',
                         icon: 'success',
