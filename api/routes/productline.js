@@ -15,8 +15,8 @@ const {
 
 router.get('/list', listProductLinesHandler);
 router.post('/register', registerProductLineHandler);
-router.put('/edit/:id', editProductLineHandler);
-router.get('/find/:id', findProductLineHandler);
+router.put('/update/:id', editProductLineHandler);
+router.get('/fetchbyid/:id', findProductLineHandler);
 router.delete('/delete/:id', deleteProductLineHandler);
 router.post('/search', searchProductLineHandler);
 

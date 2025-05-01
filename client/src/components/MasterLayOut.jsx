@@ -8,6 +8,7 @@ import MetalsList from "../views/Metals/MetalsList";
 import MetalsRegister from "../views/Metals/MetalsRegister";
 import MetalsUpdate from "../views/Metals/MetalsUpdate";
 import ProductLines from "../views/Lines/ProductLines";
+import ProductLinesUpdate from "../views/Lines/ProductLinesUpdate";
 import NavigationBar from "./NavigationBar";
 
 const MasterLayOut = ({ view }) => {
@@ -47,6 +48,9 @@ const MasterLayOut = ({ view }) => {
       break;
     case 'Product Lines':
       viewComponent = <ProductLines />
+      break;
+    case 'Product Lines Update':
+      viewComponent = <ProductLinesUpdate />
       break;
     default:
       break;

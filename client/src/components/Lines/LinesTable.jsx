@@ -162,8 +162,8 @@ export default function LinesTable({ lines, fetchLines }) {
         return lines.slice(start, end);
     }, [page, lines]);
 
-    const renderCell = React.useCallback((metal, columnKey) => {
-        const cellValue = metal[columnKey];
+    const renderCell = React.useCallback((line, columnKey) => {
+        const cellValue = line[columnKey];
 
         switch (columnKey) {
 
@@ -180,7 +180,7 @@ export default function LinesTable({ lines, fetchLines }) {
                         <Tooltip content="Detalles">
                             <span
                                 className="text-lg text-default-400 cursor-pointer active:opacity-50"
-                                onClick={() => handleDetails(metal.id)}
+                                onClick={() => handleDetails(line.id)}
                             >
                                 <EyeIcon />
                             </span>
@@ -188,7 +188,7 @@ export default function LinesTable({ lines, fetchLines }) {
                         <Tooltip color="" content="Editar">
                             <span
                                 className="text-lg text-default-400 cursor-pointer active:opacity-50"
-                                onClick={() => navigate(`/metales/editar/${metal.id}`)}
+                                onClick={() => navigate(`/lineas/editar/${line.id}`)}
                             >
                                 <EditIcon />
                             </span>
@@ -196,7 +196,7 @@ export default function LinesTable({ lines, fetchLines }) {
                         <Tooltip color="danger" content="Eliminar">
                             <span
                                 className="text-lg text-danger cursor-pointer active:opacity-50"
-                                onClick={() => handleDeleteMetal(metal.id)}
+                                onClick={() => handleDeleteMetal(line.id)}
                             >
                                 <DeleteIcon />
                             </span>
