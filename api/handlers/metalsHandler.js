@@ -1,6 +1,5 @@
-// Required modules
 const {
-    listMetals,
+    fetchMetals,
     registerMetal,
     editMetal,
     getMetalByPk,
@@ -10,21 +9,18 @@ const {
 
 function handleError(res, msg, error) {
     console.error(msg, error);
-    res.status(500).json({ error: msg, message: msg });
+    res.status(500).json({ error: msg, details: msg });
 }
 
 /**
- * Handles logic to list all metals in the database.
- * @param {Object} req - Request object.
- * @param {Object} res - Response object.
- * @returns {Promise<void>} - List of metals in JSON format.
+ * Handles logic to fetch registers in DB
  */
-const listMetalsHandler = async (req, res) => {
+const fetchMetalsHandler = async (req, res) => {
     try {
-        const metals = await listMetals();
+        const metals = await fetchMetals();
         res.status(200).json(metals);
     } catch (error) {
-        handleError(res, 'Error listing metals:', error);
+        handleError(res, 'Error fetching metals:', error);
     }
 };
 
@@ -109,7 +105,7 @@ const searchMetalHandler = async (req, res) => {
 
 // Exports
 module.exports = {
-    listMetalsHandler,
+    fetchMetalsHandler,
     registerMetalHandler,
     editMetalHandler,
     getMetalHandler,

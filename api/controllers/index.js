@@ -25,7 +25,7 @@ const {
 } = require('./clientsController');
 
 const {
-    listMetals,
+    fetchMetals,
     registerMetal,
     editMetal,
     getMetalByPk,
@@ -109,7 +109,7 @@ module.exports = {
     editClient,
     deleteClient,
     searchClients,
-    listMetals,
+    fetchMetals,
     registerMetal,
     editMetal,
     getMetalByPk,

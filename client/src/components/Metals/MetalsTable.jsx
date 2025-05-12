@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
     Table,
     TableHeader,
@@ -7,8 +7,6 @@ import {
     TableRow,
     TableCell,
     Pagination,
-    getKeyValue,
-    User,
     Tooltip,
 } from "@heroui/react";
 
@@ -149,21 +147,21 @@ const handleError = (message, error) => {
     console.error(`${message}:`, error?.message || error);
 };
 
-export default function MetalsTable({ metales, fetchMetals }) {
+export default function MetalsTable({ metals, fetchMetals }) {
 
 
     const navigate = useNavigate();
     const [page, setPage] = React.useState(1);
     const rowsPerPage = 4;
 
-    const pages = Math.ceil(metales.length / rowsPerPage);
+    const pages = Math.ceil(metals.length / rowsPerPage);
 
     const items = React.useMemo(() => {
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
 
-        return metales.slice(start, end);
-    }, [page, metales]);
+        return metals.slice(start, end);
+    }, [page, metals]);
 
     const renderCell = React.useCallback((metal, columnKey) => {
         const cellValue = metal[columnKey];
