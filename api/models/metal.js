@@ -1,7 +1,9 @@
 'use strict';
 const {
-  Model
+  Model,
+  QueryTypes
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Metal extends Model {
     /**
@@ -12,6 +14,27 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
+    static async fetchAll() {
+      try {
+        const metals = await sequelize.query(
+          `
+            SELECT *
+            FROM metals
+            ORDER BY id DESC
+            `,
+          {
+            type: QueryTypes.SELECT,
+            // logging: console.log, // Optional: Logs query for debugging
+          }
+        );
+        return metals;
+      } catch (error) {
+        console.error('Error in fetchAll:', error.message);
+        throw new Error('Database query failed while fetching metals');
+      }
+    }
+
   }
   Metal.init({
     metal: {

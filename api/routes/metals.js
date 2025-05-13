@@ -1,24 +1,21 @@
-//required modules
 var express = require('express');
 var router = express.Router();
 
 const {
     registerMetalHandler,
-    listMetalsHandler,
+    fetchMetalsHandler,
     editMetalHandler,
     getMetalHandler,
     deleteMetalHandler,
     searchMetalHandler
 } = require('../handlers');
 
-//metals routes
-router.get('/list', listMetalsHandler);
+router.get('/fetch', fetchMetalsHandler);
 router.post('/register', registerMetalHandler);
-router.put('/edit/:id', editMetalHandler);
-router.get('/get/:id', getMetalHandler);
+router.put('/update/:id', editMetalHandler);
+router.get('/fetch/:id', getMetalHandler);
 router.delete('/delete/:id', deleteMetalHandler);
 router.post('/search', searchMetalHandler);
 
-//exports
 module.exports = router;
 

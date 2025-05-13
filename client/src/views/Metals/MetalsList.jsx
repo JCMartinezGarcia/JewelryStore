@@ -7,11 +7,7 @@ import axios from 'axios';
 
 const MetalsList = () => {
 
-    useEffect(() => {
-        fetchMetals();
-    }, []);
-
-    const [metales, setMetales] = useState([]);
+    const [metals, setMetales] = useState([]);
     const navigate = useNavigate();
 
     const handleError = (message, error) => {
@@ -20,26 +16,31 @@ const MetalsList = () => {
 
     const fetchMetals = async () => {
         try {
-            const metales = await axios.get('metals/list');
-            setMetales(metales.data);
+            const response = await axios.get('metals/fetch');
+            setMetales(response.data);
         } catch (error) {
             handleError('Error fectching metals', error);
         }
     }
 
+    useEffect(() => {
+        fetchMetals();
+    }, []);
+
 
     return (
         <div>
             <BreadCum />
-            <br />
-            <div className="flex justify-between">
-                <h1><strong>Listado de Metales</strong></h1>
-                <Button className="" color="success" endContent={''} onPress={() => { navigate('/metales/registrar') }}>
+            <div className="flex justify-between my-4">
+                <h1 className="font-bold text-xl">Listado de Metales</h1>
+                <Button
+                    color="success"
+                    onPress={() => navigate("/metales/registrar")}
+                >
                     Registrar
-                </Button >
+                </Button>
             </div>
-            <br />
-            <MetalsTable metales={metales} fetchMetals={fetchMetals} />
+            <MetalsTable metals={metals} fetchMetals={fetchMetals} />
         </div>
     );
 

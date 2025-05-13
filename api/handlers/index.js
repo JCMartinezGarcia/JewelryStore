@@ -25,7 +25,7 @@ const {
 } = require('./clientsHandler');
 
 const {
-    listMetalsHandler,
+    fetchMetalsHandler,
     registerMetalHandler,
     editMetalHandler,
     getMetalHandler,
@@ -111,7 +111,7 @@ module.exports = {
     editClientHandler,
     deleteClientHandler,
     searchClientsHandler,
-    listMetalsHandler,
+    fetchMetalsHandler,
     registerMetalHandler,
     editMetalHandler,
     getMetalHandler,

@@ -2,11 +2,15 @@ const { Metal } = require('../models');
 
 
 /**
- * Retrieves a list of all metals in the database.
- * @returns {Promise<Array>} - List of metals.
+ * Retrieves a list of all metals in the DB.
  */
-const listMetals = async () => {
-    return await Metal.findAll();
+const fetchMetals = async () => {
+    try {
+        return await Metal.fetchAll();
+    } catch (error) {
+        console.error('Error in fetchMetals:', error.message);
+        throw new Error('Failed to fetch metals from database');
+    }
 };
 
 /**
@@ -64,7 +68,7 @@ const searchMetals = async (searchParameter) => {
 
 // Exports
 module.exports = {
-    listMetals,
+    fetchMetals,
     registerMetal,
     editMetal,
     getMetalByPk,
