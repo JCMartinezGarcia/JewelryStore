@@ -7,10 +7,19 @@ const {
     searchMetals
 } = require('../controllers');
 
-function handleError(res, msg, error) {
-    console.error(msg, error);
-    res.status(500).json({ error: msg, details: msg });
-}
+const Joi = require("joi");
+
+const metalSchema = Joi.object({
+    metal: Joi.string().required()
+});
+
+const handleError = (res, message, error) => {
+    console.error(`${message} ${error.message || error}`);
+    res.status(500).json({
+        message,
+        error: error.message || 'Internal Server Error',
+    });
+};
 
 /**
  * Handles logic to fetch registers in DB
@@ -26,15 +35,22 @@ const fetchMetalsHandler = async (req, res) => {
 
 /**
  * Handles logic to register a new metal.
- * @param {Object} req - Request object.
- * @param {Object} res - Response object.
- * @returns {Promise<void>} - Created metal instance in JSON format.
  */
 const registerMetalHandler = async (req, res) => {
+
+    const { error } = metalSchema.validate(req.body);
+
+    if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+    }
+
     try {
         const metal = await registerMetal(req.body);
-        res.status(201).json(metal);
+        res.status(201).json({ success: true, message: 'Metal registrado con éxito', data: metal });
     } catch (error) {
+        // if (error.name === 'SequelizeUniqueConstraintError') {
+        //     return res.status(409).json({ message: 'Metal already exists.' });
+        // }
         handleError(res, 'Error registering metal:', error);
     }
 };

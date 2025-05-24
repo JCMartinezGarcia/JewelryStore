@@ -18,10 +18,8 @@ const {
  */
 const listClientsHandler = async (req, res) => {
     try {
-        //call list clients function
         const clients = await listClients();
-        //return list of clients
-        return res.status(200).json(clients);
+        return res.status(200).json({ success: true, clients });
     } catch (error) {
         //handle errors
         console.error(error.message);

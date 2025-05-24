@@ -12,10 +12,11 @@ const RegisterMetalForm = () => {
 
     const registerMetal = async (metalName) => {
         try {
-            const { data } = await axios.post(`metals/register`, { metal: metalName });
+            const response = await axios.post(`metals/register`, { metal: metalName });
+            const { data } = response;
             if (data.success) {
                 Swal.fire({
-                    title: '¡Registro Exitoso!',
+                    title: data.message,
                     html: ``,
                     icon: 'success',
                     allowOutsideClick: false

@@ -12,7 +12,7 @@ const {
 } = require('../handlers');
 
 //client routes
-router.get('/list', listClientsHandler);
+router.get('/fetch', listClientsHandler);
 router.get('/find/:id', getClientHandler);
 router.post('/register', registerClientHandler);
 router.put('/edit/:id', editClientHandler);
