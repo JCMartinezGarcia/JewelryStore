@@ -15,8 +15,6 @@ const fetchMetals = async () => {
 
 /**
  * Registers a new metal in the database.
- * @param {Object} metalParams - Object with metal data.
- * @returns {Promise<Object>} - Created metal instance.
  */
 const registerMetal = async (metalParams) => {
     return await Metal.create(metalParams);

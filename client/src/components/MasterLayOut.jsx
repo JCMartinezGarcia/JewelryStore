@@ -4,6 +4,7 @@ import Users from "../views/Users/Users";
 import UsersRegister from "../views/Users/UsersRegister";
 import UsersEdit from "../views/Users/UsersEdit";
 import UsersDetails from "../views/Users/UsersDetails";
+import Clients from "../views/Clients/Clients";
 import MetalsList from "../views/Metals/MetalsList";
 import MetalsRegister from "../views/Metals/MetalsRegister";
 import MetalsUpdate from "../views/Metals/MetalsUpdate";
@@ -37,6 +38,9 @@ const MasterLayOut = ({ view }) => {
       break;
     case 'Users Details':
       viewComponent = <UsersDetails />
+      break;
+    case 'Clients':
+      viewComponent = <Clients />
       break;
     case 'Metals':
       viewComponent = <MetalsList />
@@ -72,6 +76,7 @@ const MasterLayOut = ({ view }) => {
           <a href="/usuarios" className="hover:bg-gray-700 p-2 rounded">Usuarios</a>
           <a href="/metales" className="hover:bg-gray-700 p-2 rounded">Metales</a>
           <a href="/Lineas" className="hover:bg-gray-700 p-2 rounded">Lineas de producto</a>
+          <a href="/Clientes" className="hover:bg-gray-700 p-2 rounded">Clientes</a>
           <a href="#" className="hover:bg-gray-700 p-2 rounded">Settings</a>
           <a href="#" className="hover:bg-gray-700 p-2 rounded">Logout</a>
         </nav>
