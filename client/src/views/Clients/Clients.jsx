@@ -23,7 +23,6 @@ const Clients = () => {
             const { success, clients } = response.data;
             if (success) {
                 setClients(clients);
-                console.log(clients);
             }
         } catch (error) {
             handleError('Error fetching clients', error);
