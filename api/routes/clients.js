@@ -13,9 +13,9 @@ const {
 
 //client routes
 router.get('/fetch', listClientsHandler);
-router.get('/find/:id', getClientHandler);
+router.get('/fetchbyid/:id', getClientHandler);
 router.post('/register', registerClientHandler);
-router.put('/edit/:id', editClientHandler);
+router.put('/update/:id', editClientHandler);
 router.delete('/delete/:id', deleteClientHandler);
 router.post('/search', searchClientsHandler);
 
