@@ -6,6 +6,7 @@ import UsersEdit from "../views/Users/UsersEdit";
 import UsersDetails from "../views/Users/UsersDetails";
 import Clients from "../views/Clients/Clients";
 import ClientsRegister from "../views/Clients/ClientsRegister";
+import ClientsUpdate from "../views/Clients/ClientsUpdate";
 import MetalsList from "../views/Metals/MetalsList";
 import MetalsRegister from "../views/Metals/MetalsRegister";
 import MetalsUpdate from "../views/Metals/MetalsUpdate";
@@ -45,6 +46,9 @@ const MasterLayOut = ({ view }) => {
       break;
     case 'Clients Register':
       viewComponent = <ClientsRegister />
+      break;
+    case 'Clients Update':
+      viewComponent = <ClientsUpdate />
       break;
     case 'Metals':
       viewComponent = <MetalsList />

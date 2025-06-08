@@ -169,8 +169,8 @@ export default function ClientsTable({ clients, fetchClients }) {
         return clients.slice(start, end);
     }, [page, clients]);
 
-    const renderCell = React.useCallback((metal, columnKey) => {
-        const cellValue = metal[columnKey];
+    const renderCell = React.useCallback((client, columnKey) => {
+        const cellValue = client[columnKey];
 
         switch (columnKey) {
 
@@ -212,7 +212,7 @@ export default function ClientsTable({ clients, fetchClients }) {
                         <Tooltip content="Detalles">
                             <span
                                 className="text-lg text-default-400 cursor-pointer active:opacity-50"
-                                onClick={() => handleDetails(clients.id)}
+                                onClick={() => handleDetails(client.id)}
                             >
                                 <EyeIcon />
                             </span>
@@ -220,7 +220,7 @@ export default function ClientsTable({ clients, fetchClients }) {
                         <Tooltip color="" content="Editar">
                             <span
                                 className="text-lg text-default-400 cursor-pointer active:opacity-50"
-                                onClick={() => navigate(`/metales/editar/${clients.id}`)}
+                                onClick={() => navigate(`/clientes/actualizar/${client.id}`)}
                             >
                                 <EditIcon />
                             </span>
@@ -228,7 +228,7 @@ export default function ClientsTable({ clients, fetchClients }) {
                         <Tooltip color="danger" content="Eliminar">
                             <span
                                 className="text-lg text-danger cursor-pointer active:opacity-50"
-                                onClick={() => handleDeleteMetal(clients.id)}
+                                onClick={() => handleDeleteClient(client.id)}
                             >
                                 <DeleteIcon />
                             </span>
@@ -240,16 +240,16 @@ export default function ClientsTable({ clients, fetchClients }) {
         }
     }, []);
 
-    const deleteMetal = async (id) => {
+    const deleteClient = async (id) => {
         try {
-            const result = await axios.delete(`metals/delete/${id}`);
+            const result = await axios.delete(`clients/delete/${id}`);
             if (result.data) return result.data;
         } catch (error) {
-            handleError('Error deleting metal', error);
+            handleError('Error deleting client', error);
         }
     }
 
-    const handleDeleteMetal = (id) => {
+    const handleDeleteClient = (id) => {
         Swal.fire({
             title: '¿Seguro quieres eliminar el registro?',
             icon: 'warning',
@@ -258,7 +258,7 @@ export default function ClientsTable({ clients, fetchClients }) {
             confirmButtonText: 'Eliminar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                if (await deleteMetal(id)) {
+                if (await deleteClient(id)) {
                     Swal.fire({
                         title: '¡Registro eliminado con exito!',
                         icon: 'success',

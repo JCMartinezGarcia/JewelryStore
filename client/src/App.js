@@ -14,9 +14,10 @@ function App() {
           <Route path='/usuarios/detalles/:id' element={<MasterLayOut view={'Users Details'} />} />
           <Route path='/clientes' element={<MasterLayOut view={'Clients'} />} />
           <Route path='/clientes/registrar' element={<MasterLayOut view={'Clients Register'} />} />
+          <Route path='/clientes/actualizar/:id' element={<MasterLayOut view={'Clients Update'} />} />
           <Route path='/metales' element={<MasterLayOut view={'Metals'} />} />
           <Route path='/metales/registrar' element={<MasterLayOut view={'Metals Register'} />} />
-          <Route path='/metales/editar/:id' element={<MasterLayOut view={'Metals Update'} />} />
+          <Route path='/metales/actualizar/:id' element={<MasterLayOut view={'Metals Update'} />} />
           <Route path='/Lineas' element={<MasterLayOut view={'Product Lines'} />} />
           <Route path='/Lineas/registrar' element={<MasterLayOut view={'Product Lines Register'} />} />
           <Route path='/lineas/editar/:id' element={<MasterLayOut view={'Product Lines Update'} />} />
