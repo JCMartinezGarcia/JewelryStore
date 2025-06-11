@@ -1,6 +1,7 @@
 'use strict';
 const {
-  Model
+  Model,
+  QueryTypes
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Client extends Model {
@@ -11,6 +12,33 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+    }
+
+    static async searchClients(searchTerm) {
+
+      const query = `
+          SELECT
+              id,
+              email, 
+              names,
+              firstLastName,
+              secondLastName,
+              isWholeSale
+          FROM clients
+          WHERE names LIKE :search_param 
+             OR firstLastName LIKE :search_param
+             OR secondLastName LIKE :search_param
+      `;
+
+      const clients = await sequelize.query(query, {
+        replacements: { search_param: `${searchTerm}%` },
+        logging: false,
+        raw: true,
+        type: QueryTypes.SELECT,
+      });
+
+      return clients;
+
     }
   }
   Client.init({

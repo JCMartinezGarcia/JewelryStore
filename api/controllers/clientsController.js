@@ -1,5 +1,5 @@
 //required models
-const { Client} = require('../models/index');
+const { Client } = require('../models/index');
 const { Op } = require('sequelize');
 //controller functions
 
@@ -84,18 +84,7 @@ const deleteClient = async (id) => {
  * @returns - list of clients matching string parameter
  */
 const searchClients = async (searchParam) => {
-    //search clients
-    const clients = Client.findAll({
-        where: {
-            [Op.or]: [
-                { names: searchParam },
-                { firstLastName: searchParam },
-                { secondLastName: searchParam }
-            ]
-        }
-    });
-    //return clients
-    return clients;
+    return await Client.searchClients(searchParam);
 }
 
 //exports

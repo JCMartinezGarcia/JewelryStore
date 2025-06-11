@@ -124,14 +124,11 @@ const deleteClientHandler = async (req, res) => {
  */
 const searchClientsHandler = async (req, res) => {
     try {
-        //destructure search parameter
-        const { searchParam } = req.body;
-        //call search clients function 
-        const clients = await searchClients(searchParam);
-        //return list of clients 
+        const { searchParameter } = req.body;
+        const clients = await searchClients(searchParameter);
+        console.log(clients);
         return res.status(200).json(clients);
     } catch (error) {
-        //handle errors
         console.error(error.message);
         res.status(500).json({ message: 'Error searching clients', error: error.message });
 
