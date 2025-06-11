@@ -24,7 +24,6 @@ const ClientsUpdate = () => {
         try {
             const response = await axios.get(`/clients/fetchbyid/${clientId}`);
             setClient(response.data[0]);
-            console.log(response.data[0]);
         } catch (error) {
             handleError('Error fetching client by ID', error);
         }
