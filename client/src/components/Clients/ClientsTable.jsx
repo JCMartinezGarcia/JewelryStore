@@ -274,7 +274,7 @@ export default function ClientsTable({ clients, fetchClients }) {
     }
 
     const handleDetails = (id) => {
-        navigate(`/usuarios/detalles/${id}`);
+        navigate(`/clientes/detalles/${id}`);
     }
 
     return (
