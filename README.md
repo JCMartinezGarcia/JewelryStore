@@ -6,3 +6,5 @@ Este es un proyecto web que es un punto de venta para una tienda de joyería. Pe
 - Express
 - PostgreSQL
 - Sequelize
+## Instalación
+Pendiente...
